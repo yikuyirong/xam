@@ -1,0 +1,24 @@
+﻿在PCL项目中安装如下插件
+
+Xamarin.Forms	核心Form租金
+
+Acr.UserDialogs	提供Toast，Alert等提示窗口
+
+Microsoft.Bcl.Compression	提供Gzip压缩
+
+Rg.Plugins.Popups	提供弹出窗口
+
+PCLStorage	本地存储
+
+在分平台项目中安装如下插件
+
+Xamarin.Forms	核心Form租金
+
+Acr.UserDialogs	提供Toast，Alert等提示窗口
+
+Microsoft.IO.Compression	提供Gzip压缩
+
+Rg.Plugins.Popups	提供弹出窗口
+
+PCLStorage	本地存储
+

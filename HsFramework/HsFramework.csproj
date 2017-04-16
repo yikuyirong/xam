@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hungsum</RootNamespace>
+    <AssemblyName>HsFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile49</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Framework\Assets\HsImage.cs" />
+    <Compile Include="Framework\Apps\HsApp.cs" />
+    <Compile Include="Framework\Events\HsEventArgs.cs" />
+    <Compile Include="Framework\Exceptions\HsException.cs" />
+    <Compile Include="Framework\Extentsions\ColorExtension.cs" />
+    <Compile Include="Framework\Extentsions\DateTimeExtension.cs" />
+    <Compile Include="Framework\Extentsions\EnumExtension.cs" />
+    <Compile Include="Framework\Extentsions\ExceptionExtension.cs" />
+    <Compile Include="Framework\Extentsions\NumberExtension.cs" />
+    <Compile Include="Framework\Extentsions\StringExtension.cs" />
+    <Compile Include="Framework\Extentsions\XElementExtension.cs" />
+    <Compile Include="Framework\Models\HsActionKey.cs" />
+    <Compile Include="Framework\Models\HsCommandParams.cs" />
+    <Compile Include="Framework\Models\HsFile.cs" />
+    <Compile Include="Framework\Models\HsImage.cs" />
+    <Compile Include="Framework\Models\HsLabelValue.cs" />
+    <Compile Include="Framework\Models\IHsLabelValue.cs" />
+    <Compile Include="Framework\Models\IPlatformExtension.cs" />
+    <Compile Include="Framework\Models\LoginData.cs" />
+    <Compile Include="Framework\Models\MenuItemKeys.cs" />
+    <Compile Include="Framework\UI\Cells\UcControlCell.cs" />
+    <Compile Include="Framework\UI\Cells\UcFileCell.cs" />
+    <Compile Include="Framework\UI\Cells\UcHsLabelValueCell.cs" />
+    <Compile Include="Framework\UI\Cells\UcIHsLabelValueCell.cs" />
+    <Compile Include="Framework\UI\Cells\UcImageCell.cs" />
+    <Compile Include="Framework\UI\Cells\UcSwitchCell.cs" />
+    <Compile Include="Framework\UI\Pages\IUcDJAnnexPage.cs" />
+    <Compile Include="Framework\UI\Pages\IUcLoginPage.cs" />
+    <Compile Include="Framework\UI\Pages\IUcMainPage.cs" />
+    <Compile Include="Framework\UI\Pages\IUcPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcChangePasswordPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcPopupPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcNormalPopupPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcBrowseImagesPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcCarouselPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcContentPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcDJAnnexListPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcDJDetailPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcDJListPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcDJPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcFileDetailPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcHelpPopupPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcImageDetailPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcListPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcLoginPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcMainPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcQueryConditionPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcQueryResultPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcZDPage.cs" />
+    <Compile Include="Framework\UI\Views\ControlType.cs" />
+    <Compile Include="Framework\UI\Views\IControlValue.cs" />
+    <Compile Include="Framework\UI\Views\UcAutoCompleteInput.cs" />
+    <Compile Include="Framework\UI\Views\UcCheckBox.cs" />
+    <Compile Include="Framework\UI\Views\UcCheckedInput.cs" />
+    <Compile Include="Framework\UI\Views\UcChooseItemBase.cs" />
+    <Compile Include="Framework\UI\Views\UcDateInput.cs" />
+    <Compile Include="Framework\UI\Views\UcFormItem.cs" />
+    <Compile Include="Framework\UI\Views\UcHeaderTitle.cs" />
+    <Compile Include="Framework\UI\Views\UcNumInput.cs" />
+    <Compile Include="Framework\UI\Views\UcPassword.cs" />
+    <Compile Include="Framework\UI\Views\UcRadioBox.cs" />
+    <Compile Include="Framework\UI\Views\UcSelectInput.cs" />
+    <Compile Include="Framework\UI\Views\UcShortCut.cs" />
+    <Compile Include="Framework\UI\Views\UcTextArea.cs" />
+    <Compile Include="Framework\UI\Views\UcTextInput.cs" />
+    <Compile Include="Framework\UI\Views\UcTimeInput.cs" />
+    <Compile Include="Framework\UI\Views\UcZoomImage.cs" />
+    <Compile Include="Framework\Utilities\HsBase64.cs" />
+    <Compile Include="Framework\Utilities\HsCoreWSHelper.cs" />
+    <Compile Include="Framework\Utilities\HsDependencyService.cs" />
+    <Compile Include="Framework\Utilities\HsDevice.cs" />
+    <Compile Include="Framework\Utilities\HsGZip.cs" />
+    <Compile Include="Framework\Utilities\HsMD5.cs" />
+    <Compile Include="Framework\Utilities\HsSysWSHelper.cs" />
+    <Compile Include="Framework\Utilities\HsToastHelper.cs" />
+    <Compile Include="Framework\Utilities\HsZlib.cs" />
+    <Compile Include="Framework\Utilities\UcControlHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_1.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_10.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_11.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_12.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_13.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_14.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_15.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_16.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_17.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_18.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_19.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_2.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_20.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_21.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_22.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_23.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_24.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_25.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_26.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_27.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_28.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_29.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_2_2.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_3.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_30.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_31.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_32.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_33.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_34.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_35.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_36.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_37.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_37_2.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_38.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_38_2.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_39.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_4.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_40.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_41.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_42.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_43.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_44.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_45.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_46.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_5.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_5_2.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_6.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_7.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_8.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\icon_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Acr.UserDialogs">
+      <HintPath>..\packages\Acr.UserDialogs.6.3.10\lib\portable-win+net45+wp8+win8+wpa81\Acr.UserDialogs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface">
+      <HintPath>..\packages\Acr.UserDialogs.6.3.10\lib\portable-win+net45+wp8+win8+wpa81\Acr.UserDialogs.Interface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FormsPlugin.Iconize, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.FormsPlugin.Iconize.1.0.10\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\FormsPlugin.Iconize.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Iconize, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.Iconize.1.0.10\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Plugin.Iconize.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.Media.2.6.2\lib\portable-net45+wp80+win8+wpa81\Plugin.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media.Abstractions, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.Media.2.6.2\lib\portable-net45+wp80+win8+wpa81\Plugin.Media.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\portable-win+net45+wp8+win8+wpa81\Rg.Plugins.Popup.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\portable-win+net45+wp8+win8+wpa81\Rg.Plugins.Popup.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=3.9.85.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Compression.3.9.85\lib\portable-net45+wp8+wpa81\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.231\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.231\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.231\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="xBrainLab.Security.Cryptography">
+      <HintPath>..\lib\xBrainLab.Security.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="zlib.net">
+      <HintPath>..\lib\zlib.net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\aac.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\ai.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\aiff.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\asp.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\avi.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\bmp.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\c.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\cpp.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\css.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\dat.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\dmg.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\doc.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\docx.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\dot.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\dotx.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\dwg.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\dxf.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\eps.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\exe.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\flv.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\gif.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\h.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\html.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\ics.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\iso.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\java.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\jpg.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\key.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\m4v.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\mid.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\mov.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\mp3.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\mp4.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\mpg.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\odp.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\ods.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\odt.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\otp.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\ots.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\ott.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\pdf.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\php.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\png.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\pps.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\ppt.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\psd.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\py.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\qt.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\rar.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\rb.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\rtf.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\sql.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\tga.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\tgz.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\tiff.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\txt.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\wav.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\xls.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\xlsx.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\xml.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\yml.png" />
+    <EmbeddedResource Include="Framework\Assets\Imgs\FileType\zip.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此项目引用这台计算机上缺少的 NuGet 程序包。使用 NuGet 程序包还原可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\Sdrd\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\Sdrd\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.2.3.4.231\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.3.4.231\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.2.3.4.231\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.231\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
