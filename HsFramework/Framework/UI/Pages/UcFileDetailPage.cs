@@ -34,7 +34,7 @@ namespace Hungsum.Framework.UI.Pages
                     {
                         Text = "打开",
                         Command = this,
-                        CommandParameter = new HsCommandParams(MenuItemKeys.UserDo1.SetLabel("打开"), cell.HsFileData)
+                        CommandParameter = new HsCommandParams(SysActionKeys.UserDo1.SetLabel("打开"), cell.HsFileData)
                     });
 
                 });
@@ -173,7 +173,7 @@ namespace Hungsum.Framework.UI.Pages
         {
             try
             {
-                if (actionKey == MenuItemKeys.UserDo1)
+                if (actionKey == SysActionKeys.UserDo1)
                 {
                     await this.downloadAndOpen(data as HsFile);
                 }

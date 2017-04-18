@@ -59,7 +59,7 @@ namespace Hungsum.Framework.UI.Pages
             {
                 Text = "确定",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.UserDo1,null),
+                CommandParameter = new HsCommandParams(SysActionKeys.UserDo1,null),
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand
             };
@@ -68,7 +68,7 @@ namespace Hungsum.Framework.UI.Pages
             {
                 Text = "取消",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.UserDo2,null),
+                CommandParameter = new HsCommandParams(SysActionKeys.UserDo2,null),
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand
             };

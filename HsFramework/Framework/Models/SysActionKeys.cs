@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hungsum.Framework.Models
 {
-    public static class MenuItemKeys
+    public class SysActionKeys
     {
         public static HsActionKey 确定 = new HsActionKey("ENTER", "确定");
 
@@ -28,6 +28,8 @@ namespace Hungsum.Framework.Models
         public static HsActionKey 删除 = new HsActionKey("DELETE", "删除");
 
         public static HsActionKey 选择数据 = new HsActionKey("CHOOSEDATA", "选择数据");
+
+        
 
         public static HsActionKey UserDo1 = new HsActionKey("UserDo1", "UserDo1");
 

@@ -29,5 +29,7 @@ namespace Hungsum.Framework.UI.Views
         public const string ImageBean = "IMAGEBEAN";
 
         public const string FileBean = "FILEBEAN";
+
+        public const string Detail = "DETAIL";
     }
 }

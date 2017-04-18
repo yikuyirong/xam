@@ -42,7 +42,7 @@ namespace Hungsum.Framework.UI.Pages
             {
                 Text = "ion-close-round",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.关闭),
+                CommandParameter = new HsCommandParams(SysActionKeys.关闭),
                 VerticalOptions = LayoutOptions.End,
             };
 
@@ -92,21 +92,21 @@ namespace Hungsum.Framework.UI.Pages
             {
                 Text = "清除缓存",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.UserDo1)
+                CommandParameter = new HsCommandParams(SysActionKeys.UserDo1)
             });
 
             mainLayout.Children.Add(new Button()
             {
                 Text = "修改密码",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.修改密码)
+                CommandParameter = new HsCommandParams(SysActionKeys.修改密码)
             });
 
             mainLayout.Children.Add(new Button()
             {
                 Text = "注销",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.注销)
+                CommandParameter = new HsCommandParams(SysActionKeys.注销)
             });
 
 
@@ -119,34 +119,34 @@ namespace Hungsum.Framework.UI.Pages
         {
             try
             {
-                if (actionKey == MenuItemKeys.关闭)
+                if (actionKey == SysActionKeys.关闭)
                 {
                     await PopupNavigation.PopAsync();
                 }
-                else if (actionKey == MenuItemKeys.修改密码)
+                else if (actionKey == SysActionKeys.修改密码)
                 {
-                    callAction(MenuItemKeys.关闭, null);
+                    callAction(SysActionKeys.关闭, null);
 
                     this.onPopupData(actionKey, null);
 
                 }
-                else if (actionKey == MenuItemKeys.UserDo1)
+                else if (actionKey == SysActionKeys.UserDo1)
                 {
                     //清除缓存
                     long size = await HsDependencyService<IPlatformExtension>.Instance().DirectoryDelete("Cache");
 
                     await this.DisplayAlert("缓存删除成功。", size != 0 ? $"释放空间{size.GetFileSizeString()}" : "无缓存文件", "确定");
 
-                    callAction(MenuItemKeys.关闭, null);
+                    callAction(SysActionKeys.关闭, null);
                 }
-                else if (actionKey == MenuItemKeys.注销)
+                else if (actionKey == SysActionKeys.注销)
                 {
                     //注销
                     if (await this.DisplayAlert("是否要注销？", "", "是", "否"))
                     {
                         this.onPopupData(actionKey, null);
 
-                        callAction(MenuItemKeys.关闭, null);
+                        callAction(SysActionKeys.关闭, null);
                     }
                 }
             }

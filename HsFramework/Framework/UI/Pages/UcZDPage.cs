@@ -97,7 +97,7 @@ namespace Hungsum.Framework.UI.Pages
             {
                 Text = "确定",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.确定),
+                CommandParameter = new HsCommandParams(SysActionKeys.确定),
                 Order = ToolbarItemOrder.Primary
             };
 
@@ -154,7 +154,7 @@ namespace Hungsum.Framework.UI.Pages
 
             if (cp == null) return;
 
-            if (cp.ActionKey == MenuItemKeys.确定)
+            if (cp.ActionKey == SysActionKeys.确定)
             {
                 this.callEnter();
             }

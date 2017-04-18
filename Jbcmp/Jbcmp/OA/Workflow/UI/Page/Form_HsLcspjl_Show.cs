@@ -12,12 +12,19 @@ namespace Hungsum.OA.Workflow.UI.Page
 {
     public class Form_HsLcspjl_Show : Form_HsLcspjl_Base
     {
-        private HsLabelValue _currentLcspjl;
+        //private HsLabelValue _currentLcspjl;
+        private string _djlx, _djId;
 
-        public Form_HsLcspjl_Show(HsLabelValue item)
+        public Form_HsLcspjl_Show(HsLabelValue item) : this(item.GetValueByLabel("Djlx"), item.GetValueByLabel("DjId"))
         {
-            _currentLcspjl = item;
         }
+
+        public Form_HsLcspjl_Show(string djlx, string djId) : base()
+        {
+            this._djlx = djlx;
+            this._djId = djId;
+        }
+
 
         public override string GetTitle()
         {
@@ -26,12 +33,11 @@ namespace Hungsum.OA.Workflow.UI.Page
 
         protected override async Task<List<HsLabelValue>> retrieve()
         {
-            return await ((HSOAWSUtl)GetWSUtil()).ShowHsLcspjls(GetLoginData().ProgressId,
-                _currentLcspjl.GetValueByLabel("Djlx"),
-                _currentLcspjl.GetValueByLabel("DjId"));
+            return await ((HsOAWSUtil)GetWSUtil()).ShowHsLcspjls(GetLoginData().ProgressId,
+                this._djlx, this._djId);
         }
 
-        protected override void modifyItem(HsLabelValue item)
+        protected override async Task modifyItem(HsLabelValue item)
         {
             //base.modifyItem(item);
         }

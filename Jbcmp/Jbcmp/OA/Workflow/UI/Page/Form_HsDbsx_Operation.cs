@@ -50,14 +50,14 @@ namespace Hungsum.OA.Workflow.UI.Page
             {
                 Text = "原始单据",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.UserDo1, item)
+                CommandParameter = new HsCommandParams(SysActionKeys.UserDo1, item)
             });
 
             items.Add(new MenuItem()
             {
                 Text = "查看步骤",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.UserDo2, item)
+                CommandParameter = new HsCommandParams(SysActionKeys.UserDo2, item)
             });
 
             if (item.GetValueByLabel("Jlzt") == "0")
@@ -66,7 +66,7 @@ namespace Hungsum.OA.Workflow.UI.Page
                 {
                     Text = "审批",
                     Command = this,
-                    CommandParameter = new HsCommandParams(MenuItemKeys.UserDo3, item),
+                    CommandParameter = new HsCommandParams(SysActionKeys.UserDo3, item),
                     IsDestructive = true
                 });
             }
@@ -77,7 +77,7 @@ namespace Hungsum.OA.Workflow.UI.Page
 
         protected override async Task<List<HsLabelValue>> retrieve()
         {
-            return await ((HSOAWSUtl)GetWSUtil()).ShowDbsxs(GetLoginData().ProgressId,
+            return await ((HsOAWSUtil)GetWSUtil()).ShowDbsxs(GetLoginData().ProgressId,
                 ucBeginDate.ControlValue,
                 ucEndDate.ControlValue,
                 ucUserSwitcher.ControlValue);
@@ -105,9 +105,9 @@ namespace Hungsum.OA.Workflow.UI.Page
 
         protected override async Task<string> doDataItem(HsActionKey actionKey, HsLabelValue item)
         {
-            if (actionKey == MenuItemKeys.删除)
+            if (actionKey == SysActionKeys.删除)
             {
-                return await this.doData(item, "Delete_Kh");
+                return await this.callRemoteDoData(item, "Delete_Kh");
             }
             else
             {
@@ -115,32 +115,37 @@ namespace Hungsum.OA.Workflow.UI.Page
             }
         }
 
-        protected override async void callAction(HsActionKey actionKey, HsLabelValue item)
+        protected override async Task callAction(HsActionKey actionKey, HsLabelValue item)
         {
-            try
+            if (actionKey == SysActionKeys.UserDo1) //查看原始单据
             {
-                if (actionKey == MenuItemKeys.UserDo1) //查看原始单据
-                {
-                    //await Navigation.PushAsync(new Form_Sdrdlxr_Operation(item));
-                }
-                else if (actionKey == MenuItemKeys.UserDo2) //查看流程步骤
-                {
-                    await Navigation.PushAsync(new Form_HsLcspjl_Show(item));
-                }
-                else if (actionKey == MenuItemKeys.UserDo3) //审批
-                {
-                    //await Navigation.PushAsync(new Form_Sdrdlxr_Operation(item));
-                }
-                else
-                {
-                    base.callAction(actionKey, item);
-                }
+                this.onOpenDJ(item);
             }
-            catch (Exception e)
+            else if (actionKey == SysActionKeys.UserDo2) //查看流程步骤
             {
-                this.ShowError(e.Message);
+                await Navigation.PushAsync(new Form_HsLcspjl_Show(item));
             }
+            else if (actionKey == SysActionKeys.UserDo3) //审批
+            {
+                Panel_HsLcspjl panel = new Panel_HsLcspjl(item);
+                panel.UpdateComplete += new EventHandler(async (sender, e) =>
+                {
+                    try
+                    {
+                        await this.callRetrieve(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ShowError(ex.Message);
+                    }
+                });
 
+                await Navigation.PushAsync(panel);
+            }
+            else
+            {
+                await base.callAction(actionKey, item);
+            }
         }
 
     }

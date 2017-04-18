@@ -26,11 +26,11 @@ namespace Hungsum.Framework.UI.Pages
             {
                 InnerContentPage page = new InnerContentPage(xMenu);
 
-                page.ItemClick += new EventHandler<HsEventArgs<IHsLabelValue>>((sender, e) =>
+                page.ItemClick += new EventHandler<HsEventArgs<IHsLabelValue>>(async (sender, e) =>
                 {
                     try
                     {
-                        doAction(e.Data);
+                        await doAction(e.Data);
                     }
                     catch (Exception ex)
                     {
@@ -54,7 +54,7 @@ namespace Hungsum.Framework.UI.Pages
                 //Icon = "ion-navicon",
                 Text = "设置",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.UserDo1),
+                CommandParameter = new HsCommandParams(SysActionKeys.UserDo1),
                 Order = ToolbarItemOrder.Primary
             });
 
@@ -62,35 +62,20 @@ namespace Hungsum.Framework.UI.Pages
         }
 
 
-        protected virtual async void doAction(IHsLabelValue item)
+        protected virtual async Task doAction(IHsLabelValue item)
         {
-            try
+            if (item.Value.StartsWith("Q_") || item.Value.StartsWith("C_"))
             {
-                if (item.Value.StartsWith("Q_") || item.Value.StartsWith("C_"))
-                {
-                    this.ShowLoading();
+                string result = await this.GetWSUtil().GetQueryNameAndArgs(GetLoginData().ProgressId, item.Value);
 
-                    string result = await this.GetWSUtil().GetQueryNameAndArgs(GetLoginData().ProgressId, item.Value);
+                XElement xData = XElement.Parse(result);
 
-                    XElement xData = XElement.Parse(result);
-
-                    await Navigation.PushAsync(new UcQueryConditionPage(xData));
-                }
-                else
-                {
-                    throw new HsException($"未找到【{item.Label}】的处理代码");
-                }
+                await Navigation.PushAsync(new UcQueryConditionPage(xData));
             }
-            catch (Exception e)
+            else
             {
-                this.ShowError(e.Message);
+                throw new HsException($"未找到【{item.Label}】的处理代码");
             }
-            finally
-            {
-                this.HideLoading();
-            }
-
-
         }
 
         /// <summary>
@@ -128,7 +113,7 @@ namespace Hungsum.Framework.UI.Pages
         {
             try
             {
-                if (actionKey == MenuItemKeys.UserDo1)
+                if (actionKey == SysActionKeys.UserDo1)
                 {
                     UcHelpPopupPage helpPage = new UcHelpPopupPage();
 
@@ -136,11 +121,11 @@ namespace Hungsum.Framework.UI.Pages
                     {
                         try
                         {
-                            if (e.Data == MenuItemKeys.注销)
+                            if (e.Data == SysActionKeys.注销)
                             {
                                 await this._logout();
                             }
-                            else if (e.Data == MenuItemKeys.修改密码)
+                            else if (e.Data == SysActionKeys.修改密码)
                             {
                                 await PopupNavigation.PushAsync(new UcChangePasswordPage());
                             }

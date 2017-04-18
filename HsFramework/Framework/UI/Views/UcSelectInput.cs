@@ -33,7 +33,7 @@ namespace Hungsum.Framework.UI.Views
 
             textInput.DataChanged += new EventHandler<HsEventArgs<string>>((sender,e) =>
             {
-                this.DataChanged?.Invoke(this, e);
+                this.DataChanged?.Invoke(this, new HsEventArgs<string>() { Data = ControlValue });
             });
 
             button = new Button(){ BackgroundColor = Color.Transparent };

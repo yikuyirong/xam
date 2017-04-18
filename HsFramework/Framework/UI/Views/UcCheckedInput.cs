@@ -136,13 +136,13 @@ namespace Hungsum.Framework.UI.Views
             {
                 try
                 {
-                    if (actionKey == MenuItemKeys.UserDo1)
+                    if (actionKey == SysActionKeys.UserDo1)
                     {
-                        this.onPopupData(MenuItemKeys.选择数据, string.Join(",", _controls.Where(r => r.Checked).Select(r => r.ControlValue)));
+                        this.onPopupData(SysActionKeys.选择数据, string.Join(",", _controls.Where(r => r.Checked).Select(r => r.ControlValue)));
 
                         await PopupNavigation.PopAsync();
                     }
-                    else if (actionKey == MenuItemKeys.UserDo2)
+                    else if (actionKey == SysActionKeys.UserDo2)
                     {
                         await PopupNavigation.PopAsync();
                     }

@@ -40,7 +40,7 @@ namespace Hungsum.Framework.UI.Pages
         {
             try
             {
-                if (actionKey == MenuItemKeys.UserDo1)
+                if (actionKey == SysActionKeys.UserDo1)
                 {
                     ucOldPassword.Validate();
                     ucNewPassword.Validate();
@@ -60,7 +60,7 @@ namespace Hungsum.Framework.UI.Pages
 
                     await PopupNavigation.PopAsync();
                 }
-                else if (actionKey == MenuItemKeys.UserDo2)
+                else if (actionKey == SysActionKeys.UserDo2)
                 {
                     await PopupNavigation.PopAsync();
                 }

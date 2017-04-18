@@ -52,7 +52,7 @@ namespace Hungsum.Sdrd.UI.Page
             {
                 Icon = "ion-plus-round",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.新建)
+                CommandParameter = new HsCommandParams(SysActionKeys.新建)
             });
 
             return items;
@@ -68,14 +68,14 @@ namespace Hungsum.Sdrd.UI.Page
                 {
                     Text = "跟进",
                     Command = this,
-                    CommandParameter = new HsCommandParams(MenuItemKeys.UserDo1.SetLabel("跟进"), item),
+                    CommandParameter = new HsCommandParams(SysActionKeys.UserDo1.SetLabel("跟进"), item),
                 });
 
                 items.Add(new MenuItem()
                 {
                     Text = "删除",
                     Command = this,
-                    CommandParameter = new HsCommandParams(MenuItemKeys.删除, item),
+                    CommandParameter = new HsCommandParams(SysActionKeys.删除, item),
                     IsDestructive = true
                 });
             }
@@ -85,7 +85,7 @@ namespace Hungsum.Sdrd.UI.Page
                 {
                     Text = "取消跟进",
                     Command = this,
-                    CommandParameter = new HsCommandParams(MenuItemKeys.UserDo2.SetLabel("取消跟进"), item),
+                    CommandParameter = new HsCommandParams(SysActionKeys.UserDo2.SetLabel("取消跟进"), item),
                 });
             }
 
@@ -101,63 +101,63 @@ namespace Hungsum.Sdrd.UI.Page
                 this.ucUserSwitcher.ControlValue, "0,1");
         }
 
-        protected override async void addItem()
+        protected override async Task addItem()
         {
-            try
-            {
-                Panel_Sdrdxm panel = new Panel_Sdrdxm();
+            Panel_Sdrdxm panel = new Panel_Sdrdxm();
 
-                panel.UpdateComplete += new EventHandler((sender, e) =>
+            panel.UpdateComplete += new EventHandler(async (sender, e) =>
+            {
+                try
                 {
-                    this.callRetrieve(false);
-                });
+                    await this.callRetrieve(false);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowError(ex.Message);
+                }
+            });
 
-                await Navigation.PushAsync(panel);
-            }
-            catch (Exception ex)
-            {
-                this.ShowError(ex.Message);
-            }
+            await Navigation.PushAsync(panel);
         }
 
 
-        protected async override void modifyItem(HsLabelValue item)
+        protected async override Task modifyItem(HsLabelValue item)
         {
-            try
-            {
-                Panel_Sdrdxm panel = new Panel_Sdrdxm(item);
+            Panel_Sdrdxm panel = new Panel_Sdrdxm(item);
 
-                if (item.GetValueByLabel("Xmzt") == "0")
+            if (item.GetValueByLabel("Xmzt") == "0")
+            {
+                panel.UpdateComplete += new EventHandler(async (sender, e) =>
                 {
-                    panel.UpdateComplete += new EventHandler((sender, e) =>
+                    try
                     {
-                        this.callRetrieve(false);
-                    });
-                }
-                else
-                {
-                    panel.AuditOnly = true;
-                }
-
-                await Navigation.PushAsync(panel);
+                        await this.callRetrieve(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ShowError(ex.Message);
+                    }
+                });
             }
-            catch (Exception ex)
+            else
             {
-                this.ShowError(ex.Message);
+                panel.AuditOnly = true;
             }
+
+            await Navigation.PushAsync(panel);
         }
 
         protected override async Task<string> doDataItem(HsActionKey actionKey, HsLabelValue item)
         {
-            if (actionKey == MenuItemKeys.删除)
+            if (actionKey == SysActionKeys.删除)
             {
-                return await this.doData(item, "Delete_Xm");
-            } else if (actionKey == MenuItemKeys.UserDo1)
+                return await this.callRemoteDoData(item, "Delete_Xm");
+            } else if (actionKey == SysActionKeys.UserDo1)
             {
-                return await this.doData(item, "Submit_Xm");
-            } else if (actionKey == MenuItemKeys.UserDo2)
+                return await this.callRemoteDoData(item, "Submit_Xm");
+            } else if (actionKey == SysActionKeys.UserDo2)
             {
-                return await this.doData(item, "UnSubmit_Xm");
+                return await this.callRemoteDoData(item, "UnSubmit_Xm");
             } else
             {
                 return await base.doDataItem(actionKey, item);

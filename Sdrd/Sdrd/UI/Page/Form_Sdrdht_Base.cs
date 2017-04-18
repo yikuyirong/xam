@@ -34,7 +34,7 @@ namespace Hungsum.Sdrd.UI.Page
         {
             try
             {
-                if (actionKey == MenuItemKeys.UserDo3) //回款记录
+                if (actionKey == SysActionKeys.UserDo3) //回款记录
                 {
                     await Navigation.PushAsync(new Form_Sdrdhthkjl_Query2(item));
                 }

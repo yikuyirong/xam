@@ -217,7 +217,7 @@ namespace Hungsum.Framework.UI.Views
                 {
                     if (e.SelectedItem != null)
                     {
-                        this.onPopupData(MenuItemKeys.选择数据, ((HsLabelValue)e.SelectedItem).Value);
+                        this.onPopupData(SysActionKeys.选择数据, ((HsLabelValue)e.SelectedItem).Value);
 
                         await PopupNavigation.PopAsync();
                     }
@@ -245,13 +245,13 @@ namespace Hungsum.Framework.UI.Views
             {
                 try
                 {
-                    if (actionKey == MenuItemKeys.UserDo1) //重置
+                    if (actionKey == SysActionKeys.UserDo1) //重置
                     {
-                        this.onPopupData(MenuItemKeys.选择数据, string.Empty);
+                        this.onPopupData(SysActionKeys.选择数据, string.Empty);
 
                         await PopupNavigation.PopAsync();
                     }
-                    else if (actionKey == MenuItemKeys.UserDo2) //取消
+                    else if (actionKey == SysActionKeys.UserDo2) //取消
                     {
                         await PopupNavigation.PopAsync();
                     }

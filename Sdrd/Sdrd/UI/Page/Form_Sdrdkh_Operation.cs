@@ -30,7 +30,7 @@ namespace Hungsum.Sdrd.UI.Page
             {
                 Icon = "ion-plus-round",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.新建)
+                CommandParameter = new HsCommandParams(SysActionKeys.新建)
             });
 
             return items;
@@ -44,14 +44,14 @@ namespace Hungsum.Sdrd.UI.Page
             {
                 Text = "联系人",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.UserDo1, item)
+                CommandParameter = new HsCommandParams(SysActionKeys.UserDo1, item)
             });
 
             items.Add(new MenuItem()
             {
                 Text = "删除",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.删除, item),
+                CommandParameter = new HsCommandParams(SysActionKeys.删除, item),
                 IsDestructive = true
             });
 
@@ -105,9 +105,9 @@ namespace Hungsum.Sdrd.UI.Page
 
         protected override async Task<string> doDataItem(HsActionKey actionKey,HsLabelValue item)
         {
-            if (actionKey == MenuItemKeys.删除)
+            if (actionKey == SysActionKeys.删除)
             {
-                return await this.doData(item, "Delete_Kh");
+                return await this.callRemoteDoData(item, "Delete_Kh");
             } else
             {
                 return await base.doDataItem(actionKey, item);
@@ -118,7 +118,7 @@ namespace Hungsum.Sdrd.UI.Page
         {
             try
             {
-                if (actionKey == MenuItemKeys.UserDo1)
+                if (actionKey == SysActionKeys.UserDo1)
                 {
                     await Navigation.PushAsync(new Form_Sdrdlxr_Operation(item));
                 } else

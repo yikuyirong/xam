@@ -24,7 +24,7 @@ namespace Hungsum.Sdrd.UI.Page
             {
                 Icon = "ion-plus-round",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.新建)
+                CommandParameter = new HsCommandParams(SysActionKeys.新建)
             });
 
             return items;
@@ -38,7 +38,7 @@ namespace Hungsum.Sdrd.UI.Page
             {
                 Text = "删除",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.删除, item),
+                CommandParameter = new HsCommandParams(SysActionKeys.删除, item),
                 IsDestructive = true
             });
 
@@ -93,9 +93,9 @@ namespace Hungsum.Sdrd.UI.Page
 
         protected override async Task<string> doDataItem(HsActionKey actionKey, HsLabelValue item)
         {
-            if (actionKey == MenuItemKeys.删除)
+            if (actionKey == SysActionKeys.删除)
             {
-                return await this.doData(item, "Delete_Khjljl");
+                return await this.callRemoteDoData(item, "Delete_Khjljl");
             } else
             {
                 return await base.doDataItem(actionKey, item);

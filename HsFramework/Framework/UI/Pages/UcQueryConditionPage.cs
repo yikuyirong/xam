@@ -54,7 +54,7 @@ namespace Hungsum.Framework.UI.Pages
         {
             IList<ToolbarItem> items = base.onCreateToolbarItems();
 
-            items.First(r => ((HsCommandParams)r.CommandParameter)?.ActionKey == MenuItemKeys.确定).Text = "查询";
+            items.First(r => ((HsCommandParams)r.CommandParameter)?.ActionKey == SysActionKeys.确定).Text = "查询";
 
             return items;
         }

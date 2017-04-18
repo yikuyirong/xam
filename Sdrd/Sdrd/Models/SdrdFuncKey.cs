@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hungsum.Sdrd.Models
 {
-    public class SdrdFuncKey
+    public static class SdrdFuncKey
     {
         public const string RD客户维护 = "RDAA0010";
 

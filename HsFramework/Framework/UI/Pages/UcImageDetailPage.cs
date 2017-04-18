@@ -29,8 +29,8 @@ namespace Hungsum.Framework.UI.Pages
         {
             return new List<HsActionKey>()
             {
-                MenuItemKeys.UserDo1.SetLabel("拍照"),
-                MenuItemKeys.UserDo2.SetLabel("相册")
+                SysActionKeys.UserDo1.SetLabel("拍照"),
+                SysActionKeys.UserDo2.SetLabel("相册")
             };
         }
 
@@ -48,7 +48,7 @@ namespace Hungsum.Framework.UI.Pages
                         {
                             Text = "删除",
                             Command = this,
-                            CommandParameter = new HsCommandParams(MenuItemKeys.删除, cell.HsImageData),
+                            CommandParameter = new HsCommandParams(SysActionKeys.删除, cell.HsImageData),
                             IsDestructive = true
                         });
                     }
@@ -235,15 +235,15 @@ namespace Hungsum.Framework.UI.Pages
 
         protected override void callAction(HsActionKey actionKey, object data)
         {
-            if (actionKey == MenuItemKeys.UserDo1)
+            if (actionKey == SysActionKeys.UserDo1)
             {
                 this._takePhoto();
             }
-            else if (actionKey == MenuItemKeys.UserDo2)
+            else if (actionKey == SysActionKeys.UserDo2)
             {
                 this._selectPhoto();
             }
-            else if (actionKey == MenuItemKeys.删除)
+            else if (actionKey == SysActionKeys.删除)
             {
                 this.datas.Remove(data as HsImage);
             }

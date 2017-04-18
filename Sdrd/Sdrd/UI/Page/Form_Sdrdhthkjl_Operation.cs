@@ -24,7 +24,7 @@ namespace Hungsum.Sdrd.UI.Page
             {
                 Icon = "ion-plus-round",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.新建)
+                CommandParameter = new HsCommandParams(SysActionKeys.新建)
             });
 
             return items;
@@ -40,14 +40,14 @@ namespace Hungsum.Sdrd.UI.Page
                 {
                     Text = "提交",
                     Command = this,
-                    CommandParameter = new HsCommandParams(MenuItemKeys.UserDo1.SetLabel("提交"), item)
+                    CommandParameter = new HsCommandParams(SysActionKeys.UserDo1.SetLabel("提交"), item)
                 });
 
                 items.Add(new MenuItem()
                 {
                     Text = "删除",
                     Command = this,
-                    CommandParameter = new HsCommandParams(MenuItemKeys.删除, item), IsDestructive = true
+                    CommandParameter = new HsCommandParams(SysActionKeys.删除, item), IsDestructive = true
                 });
             }
             else
@@ -56,7 +56,7 @@ namespace Hungsum.Sdrd.UI.Page
                 {
                     Text = "取消提交",
                     Command = this,
-                    CommandParameter = new HsCommandParams(MenuItemKeys.UserDo2.SetLabel("取消提交"), item)
+                    CommandParameter = new HsCommandParams(SysActionKeys.UserDo2.SetLabel("取消提交"), item)
                 });
             }
 
@@ -121,15 +121,15 @@ namespace Hungsum.Sdrd.UI.Page
 
         protected override async Task<string> doDataItem(HsActionKey actionKey, HsLabelValue item)
         {
-            if (actionKey == MenuItemKeys.删除)
+            if (actionKey == SysActionKeys.删除)
             {
-                return await this.doData(item, "Delete_Hthkjl");
-            } else if (actionKey == MenuItemKeys.UserDo1)
+                return await this.callRemoteDoData(item, "Delete_Hthkjl");
+            } else if (actionKey == SysActionKeys.UserDo1)
             {
-                return await this.doData(item, "Submit_Hthkjl");
-            } else if (actionKey == MenuItemKeys.UserDo2)
+                return await this.callRemoteDoData(item, "Submit_Hthkjl");
+            } else if (actionKey == SysActionKeys.UserDo2)
             {
-                return await this.doData(item, "UnSubmit_Hthkjl");
+                return await this.callRemoteDoData(item, "UnSubmit_Hthkjl");
             }
             else
             {

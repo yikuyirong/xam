@@ -54,7 +54,7 @@
     <Compile Include="Framework\Models\IHsLabelValue.cs" />
     <Compile Include="Framework\Models\IPlatformExtension.cs" />
     <Compile Include="Framework\Models\LoginData.cs" />
-    <Compile Include="Framework\Models\MenuItemKeys.cs" />
+    <Compile Include="Framework\Models\SysActionKeys.cs" />
     <Compile Include="Framework\UI\Cells\UcControlCell.cs" />
     <Compile Include="Framework\UI\Cells\UcFileCell.cs" />
     <Compile Include="Framework\UI\Cells\UcHsLabelValueCell.cs" />

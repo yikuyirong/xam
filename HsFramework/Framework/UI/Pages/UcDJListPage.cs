@@ -42,45 +42,47 @@ namespace Hungsum.Framework.UI.Pages
 
         public UcDJListPage() : base() { }
 
-        protected override void onInit()
+        protected override async void onInit()
         {
             base.onInit();
 
-            callRetrieve(false);
-        }
-
-        protected async void callRetrieve(bool isShowCondition)
-        {
             try
             {
-                if (isShowCondition && (ucBeginDate != null || ucEndDate != null || ucUserSwitcher != null))
-                {
-                    RetrieveConditionPage page = new RetrieveConditionPage(new List<IControlValue>() { ucBeginDate, ucEndDate, ucUserSwitcher });
-
-                    page.PopupData += new EventHandler<Events.HsEventArgs<HsActionKey, List<string>>>(async (sender, e) =>
-                    {
-                        try
-                         {
-                             this.lv.ItemsSource = await retrieve();
-                         }
-                         catch (Exception ex)
-                         {
-                             this.ShowError(ex.Message);
-                         }
-                     });
-
-                    await PopupNavigation.PushAsync(page);
-                }
-                else
-                {
-                    this.lv.ItemsSource = await retrieve();
-                }
+                await callRetrieve(false);
             }
             catch (Exception ex)
             {
                 this.ShowError(ex.Message);
             }
         }
+
+        protected async Task callRetrieve(bool isShowCondition)
+        {
+            if (isShowCondition && (ucBeginDate != null || ucEndDate != null || ucUserSwitcher != null))
+            {
+                RetrieveConditionPage page = new RetrieveConditionPage(new List<IControlValue>() { ucBeginDate, ucEndDate, ucUserSwitcher });
+
+                page.PopupData += new EventHandler<Events.HsEventArgs<HsActionKey, List<string>>>(async (sender, e) =>
+                {
+                    try
+                    {
+                        this.lv.ItemsSource = await retrieve();
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ShowError(ex.Message);
+                    }
+                });
+
+                await PopupNavigation.PushAsync(page);
+            }
+            else
+            {
+                this.lv.ItemsSource = await retrieve();
+            }
+        }
+
+        protected abstract Task<List<HsLabelValue>> retrieve();
 
         protected override IList<ToolbarItem> OnCreateToolbarItems()
         {
@@ -90,73 +92,28 @@ namespace Hungsum.Framework.UI.Pages
             {
                 Icon = "ion-refresh",
                 Command = this,
-                CommandParameter = new HsCommandParams(MenuItemKeys.刷新)
+                CommandParameter = new HsCommandParams(SysActionKeys.刷新)
             });
 
             return items;
         }
 
-        #region 新建
-
-        protected void callNew()
+        protected override async Task<string> callDoData(HsActionKey actionKey, HsLabelValue item)
         {
-            addItem();
-        }
+            string result = await base.callDoData(actionKey, item);
 
-        protected virtual void addItem() { }
-
-        #endregion
-
-        #region 修改
-
-        protected override void itemClick(object item)
-        {
-            modifyItem(item as HsLabelValue);
-        }
-
-        protected virtual void modifyItem(HsLabelValue item) { }
-
-        #endregion
-
-        #region doData
-
-        protected async void callDoData(HsActionKey actionKey, HsLabelValue item)
-        {
-            try
+            if (!string.IsNullOrWhiteSpace(result))
             {
-                if (item == null)
-                {
-                    throw new HsException("选中数据不是有效的HsLabelValue对象。");
-                }
+                this.ShowInformation(result);
 
-                bool result = await this.DisplayAlert($"是否{actionKey.Label}数据？", "", "是", "否");
-
-                if (result)
-                {
-                    string data = await this.doDataItem(actionKey, item);
-
-                    this.ShowInformation(data);
-
-                    callRetrieve(false);
-                }
+                await callRetrieve(false);
             }
-            catch (Exception ex)
-            {
-                this.ShowError(ex.Message);
-            }
+
+            return result;
+
         }
 
-        protected virtual async Task<string> doDataItem(HsActionKey actionKey, HsLabelValue item)
-        {
-            await Task.Delay(1);
-
-            throw new HsException($"未知的ActionKey【{actionKey}】");
-        }
-
-        #endregion
-
-
-        protected async Task<string> doData(HsLabelValue item, string actionFlag)
+        protected async Task<string> callRemoteDoData(HsLabelValue item, string actionFlag)
         {
             if (string.IsNullOrWhiteSpace(uniqueIdField))
             {
@@ -168,40 +125,15 @@ namespace Hungsum.Framework.UI.Pages
             return await GetWSUtil().DoDatas(GetLoginData().ProgressId, xbhs.ToString(SaveOptions.DisableFormatting), actionFlag);
         }
 
-        public override void Execute(object parameter)
+        protected override async Task callAction(HsActionKey actionKey, HsLabelValue item)
         {
-            try
+            if (actionKey == SysActionKeys.刷新)
             {
-                var cp = parameter as HsCommandParams;
-
-                if (cp != null)
-                {
-                    this.callAction(cp.ActionKey, cp.Data as HsLabelValue);
-                }
-                else
-                {
-                    base.Execute(parameter);
-                }
-            }
-            catch (Exception e)
-            {
-                this.ShowError(e.Message);
-            }
-        }
-
-        protected virtual void callAction(HsActionKey actionKey, HsLabelValue item)
-        {
-            if (actionKey == MenuItemKeys.刷新)
-            {
-                callRetrieve(true);
-            }
-            else if (actionKey == MenuItemKeys.新建)
-            {
-                callNew();
+                await callRetrieve(true);
             }
             else
             {
-                callDoData(actionKey, item);
+                await callAction(actionKey,item);
             }
         }
 
@@ -239,7 +171,7 @@ namespace Hungsum.Framework.UI.Pages
             {
                 try
                 {
-                    if (actionKey == MenuItemKeys.UserDo1)
+                    if (actionKey == SysActionKeys.UserDo1)
                     {
                         List<string> datas = new List<string>();
 
@@ -250,11 +182,11 @@ namespace Hungsum.Framework.UI.Pages
                             datas.Add(control == null ? string.Empty : control.ControlValue);
                         }
 
-                        this.onPopupData(MenuItemKeys.选择数据, datas);
+                        this.onPopupData(SysActionKeys.选择数据, datas);
 
                         await PopupNavigation.PopAsync();
                     }
-                    else if (actionKey == MenuItemKeys.UserDo2)
+                    else if (actionKey == SysActionKeys.UserDo2)
                     {
                         await PopupNavigation.PopAsync();
                     }

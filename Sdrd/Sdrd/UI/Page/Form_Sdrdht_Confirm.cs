@@ -32,7 +32,7 @@ namespace Hungsum.Sdrd.UI.Page
                 {
                     Text = "确认",
                     Command = this,
-                    CommandParameter = new HsCommandParams(MenuItemKeys.UserDo1.SetLabel("确认"), item) 
+                    CommandParameter = new HsCommandParams(SysActionKeys.UserDo1.SetLabel("确认"), item) 
                 });
             }
             else
@@ -41,7 +41,7 @@ namespace Hungsum.Sdrd.UI.Page
                 {
                     Text = "回款记录",
                     Command = this,
-                    CommandParameter = new HsCommandParams(MenuItemKeys.UserDo3, item)
+                    CommandParameter = new HsCommandParams(SysActionKeys.UserDo3, item)
                 });
 
                 if (htzt == "1")
@@ -50,7 +50,7 @@ namespace Hungsum.Sdrd.UI.Page
                     {
                         Text = "取消确认",
                         Command = this,
-                        CommandParameter = new HsCommandParams(MenuItemKeys.UserDo2.SetLabel("取消确认"), item)
+                        CommandParameter = new HsCommandParams(SysActionKeys.UserDo2.SetLabel("取消确认"), item)
                     });
                 }
 
@@ -80,13 +80,13 @@ namespace Hungsum.Sdrd.UI.Page
 
         protected override async Task<string> doDataItem(HsActionKey actionKey, HsLabelValue item)
         {
-            if (actionKey == MenuItemKeys.UserDo1)
+            if (actionKey == SysActionKeys.UserDo1)
             {
-                return await this.doData(item, "Confirm_Ht");
+                return await this.callRemoteDoData(item, "Confirm_Ht");
             }
-            else if (actionKey == MenuItemKeys.UserDo2)
+            else if (actionKey == SysActionKeys.UserDo2)
             {
-                return await this.doData(item, "UnConfirm_Ht");
+                return await this.callRemoteDoData(item, "UnConfirm_Ht");
             } else
             {
                 return await base.doDataItem(actionKey, item);

@@ -8,6 +8,7 @@ namespace Hungsum.Framework.Extentsions
 {
     public static class EnumExtension
     {
+
         /// <summary>
         /// 从逗号分隔的枚举值中获取逗号分割的枚举名，逗号可更换为其他分隔符。
         /// </summary>
