@@ -1,8 +1,9 @@
 ﻿using FormsPlugin.Iconize;
 using Hungsum.Framework.Models;
-using Hungsum.jbcmp.Utilities;
 using Hungsum.Jbcmp.OA.Workflow.UI.Page;
 using Hungsum.Jbcmp.UI.Page;
+using Hungsum.Jbcmp.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -56,48 +57,48 @@ namespace Hungsum.Jbcmp.UI.Page
 
         protected override async Task addItem()
         {
-            //Panel_Sdrdxm panel = new Panel_Sdrdxm();
+            Panel_JbCgspd panel = new Panel_JbCgspd();
 
-            //panel.UpdateComplete += new EventHandler(async (sender, e) =>
-            //{
-            //    try
-            //    {
-            //        await this.callRetrieve(false);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        this.ShowError(ex.Message);
-            //    }
-            //});
+            panel.UpdateComplete += new EventHandler(async (sender, e) =>
+            {
+                try
+                {
+                    await this.callRetrieve(false);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowError(ex.Message);
+                }
+            });
 
-            //await Navigation.PushAsync(panel);
+            await Navigation.PushAsync(panel);
         }
 
 
-        protected async override void modifyItem(HsLabelValue item)
+        protected async override Task modifyItem(HsLabelValue item)
         {
-            //try
-            //{
-            //    Panel_Sdrdxm panel = new Panel_Sdrdxm(item);
+            Panel_JbCgspd panel = new Panel_JbCgspd(item);
 
-            //    if (item.GetValueByLabel("Xmzt") == "0")
-            //    {
-            //        panel.UpdateComplete += new EventHandler((sender, e) =>
-            //        {
-            //            this.callRetrieve(false);
-            //        });
-            //    }
-            //    else
-            //    {
-            //        panel.AuditOnly = true;
-            //    }
+            if (item.GetValueByLabel("Spzt") == "0")
+            {
+                panel.UpdateComplete += new EventHandler(async (sender, e) =>
+                {
+                    try
+                    {
+                        await this.callRetrieve(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ShowError(ex.Message);
+                    }
+                });
+            }
+            else
+            {
+                panel.AuditOnly = true;
+            }
 
-            //    await Navigation.PushAsync(panel);
-            //}
-            //catch (Exception ex)
-            //{
-            //    this.ShowError(ex.Message);
-            //}
+            await Navigation.PushAsync(panel);
         }
 
         protected override async Task<string> doDataItem(HsActionKey actionKey, HsLabelValue item)

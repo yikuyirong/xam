@@ -11,6 +11,9 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using System.Collections.Specialized;
 using Hungsum.Framework.Exceptions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace Hungsum.Framework.UI.Pages
 {
@@ -18,7 +21,7 @@ namespace Hungsum.Framework.UI.Pages
     {
         protected ObservableCollection<HsLabelValue> datas;
 
-        public UcDJDetailPage()
+        public UcDJDetailPage(string title)
         {
             this.datas = new ObservableCollection<HsLabelValue>();
 
@@ -30,6 +33,8 @@ namespace Hungsum.Framework.UI.Pages
             this.lv.ItemsSource = datas;
 
             this.AllowEdit = true;
+
+            this.mainLayout.Children.Insert(0,new UcHeaderTitle(title));
         }
 
 
@@ -37,13 +42,16 @@ namespace Hungsum.Framework.UI.Pages
         {
             IList<MenuItem> items = base.onCreateContextMenuItems(item);
 
-            items.Add(new MenuItem()
+            if (AllowEdit)
             {
-                Text = "删除",
-                Command = this,
-                CommandParameter = new HsCommandParams(SysActionKeys.删除, item),
-                IsDestructive = true
-            });
+                items.Add(new MenuItem()
+                {
+                    Text = "删除",
+                    Command = this,
+                    CommandParameter = new HsCommandParams(SysActionKeys.删除, item),
+                    IsDestructive = true
+                });
+            }
 
             return items;
         }
@@ -61,6 +69,11 @@ namespace Hungsum.Framework.UI.Pages
             }
         }
 
+        protected virtual HsLabelValue createHsLabelValueFromJObject(HsLabelValue item, JObject obj)
+        {
+            return item;
+        }
+
         #region IControlValue
 
         public string CName { get; set; }
@@ -71,7 +84,58 @@ namespace Hungsum.Framework.UI.Pages
 
         public string ControlLabel => CName;
 
-        public abstract string ControlValue { get; set; }
+        public virtual string ControlValue
+        {
+            get
+            {
+                JArray container = new JArray();
+
+                foreach (HsLabelValue lv in datas)
+                {
+                    JObject jObj = new JObject();
+
+                    foreach (HsLabelValue item in lv.Items)
+                    {
+                        jObj.Add(item.Label, JValue.CreateString(item.Value));
+                    }
+
+                    container.Add(jObj);
+                }
+
+                return JsonConvert.SerializeObject(container);
+            }
+
+            set
+            {
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(value))
+                    {
+                        JContainer jContainer = JsonConvert.DeserializeObject(value) as JContainer;
+
+                        if (jContainer != null)
+                        {
+                            foreach (JObject jObj in jContainer)
+                            {
+                                HsLabelValue item = new HsLabelValue();
+
+                                foreach (KeyValuePair<string, JToken> jKv in jObj)
+                                {
+                                    item.AddItem(new HsLabelValue() { Label = jKv.Key, Value = jKv.Value.ToString() });
+                                }
+
+                                datas.Add(createHsLabelValueFromJObject(item, jObj));
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.ShowError(ex.Message);
+                }
+
+            }
+        }
 
         private bool _allowEdit = true;
 

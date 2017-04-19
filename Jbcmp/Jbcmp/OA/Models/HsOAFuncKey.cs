@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hungsum.Jbcmp.OA.Models
 {
-    public static class HsOAFuncKey
+    public class HsOAFuncKey
     {
         /*************工作流***************/
 

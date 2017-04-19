@@ -1,4 +1,4 @@
-﻿using App8.Framework.UI.Pages;
+﻿
 using Hungsum.Framework.Models;
 using Hungsum.Framework.UI.Pages;
 using Hungsum.Framework.UI.Views;
@@ -8,6 +8,8 @@ using System;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Hungsum.Jbcmp.Utilities;
+using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace Hungsum.Jbcmp.UI.Page
 {
@@ -64,11 +66,11 @@ namespace Hungsum.Jbcmp.UI.Page
             this._ucBz.CName = "备注";
             this.controls.Add(this._ucBz);
 
-            this._ucDetail = new UcJbCgspdDetailPage();
+            this._ucDetail = new UcJbCgspdDetailPage(this.PP.detailTitle);
             this._ucDetail.CName = "采购明细";
             this._ucDetail.AllowEmpty = false;
             this.controls.Add(this._ucDetail);
-            this.Children.Insert(1, this._ucDetail); 到这里了。。。
+            this.Children.Insert(1, this._ucDetail);
 
         }
 
@@ -81,6 +83,7 @@ namespace Hungsum.Jbcmp.UI.Page
             this._ucSfjj.ControlValue = data.GetValueByLabel("Sfjj");
             this._ucCgyy.ControlValue = data.GetValueByLabel("Cgyy");
             this._ucBz.ControlValue = data.GetValueByLabel("Bz");
+            this._ucDetail.ControlValue = data.GetValueByLabel("StrMx");
 
         }
 
@@ -102,25 +105,18 @@ namespace Hungsum.Jbcmp.UI.Page
 
         private class UcJbCgspdDetailPage : UcDJDetailPage
         {
-            public override string ControlValue
+            public UcJbCgspdDetailPage(string title) : base(title) { }
+
+            protected override HsLabelValue createHsLabelValueFromJObject(HsLabelValue item, JObject obj)
             {
-                get
-                {
-                    return null;
-                }
+                string mc = obj.GetValue("Mc").ToString();
 
-                set
-                {
-                    if (!string.IsNullOrWhiteSpace(value))
-                    {
-                         IEnumerable<Jbcgspdmx> items = JsonConvert.DeserializeObject<List<Jbcgspdmx>>(value);
+                string sl = obj.GetValue("Sl").ToString();
 
-                        foreach (Jbcgspdmx item in items)
-                        {
-                            //datas.Add(item);
-                        }
-                    }
-                }
+                item.Label = mc;
+                item.Value = sl;
+
+                return item;
             }
 
             private class Jbcgspdmx

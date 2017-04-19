@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Xamarin.Forms;
 
 namespace Hungsum.Framework.Utilities
 {
@@ -33,7 +34,7 @@ namespace Hungsum.Framework.Utilities
                 new XElement("UserName", username),
                 new XElement("Password", password),
                 new XElement("ConnString", connString),
-                new XElement("ClientType", "1"));
+                new XElement("ClientType", "2")); //标记为IOS
 
             string data = await postByName("Login", HsGZip.CompressString(xData.ToString(SaveOptions.DisableFormatting)));
 

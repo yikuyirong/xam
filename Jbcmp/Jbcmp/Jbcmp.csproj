@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Models\JbcmpDjlx.cs" />
+    <Compile Include="Models\JbcmpFuncKey.cs" />
     <Compile Include="OA\Models\HsOAActionKeys.cs" />
     <Compile Include="OA\Models\HsOADjlx.cs" />
     <Compile Include="OA\Models\HsOAFuncKey.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="OA\Workflow\UI\Page\Panel_HsLcspjl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Page\Form_JbCgspd_Base.cs" />
+    <Compile Include="UI\Page\Form_JbCgspd_Query.cs" />
     <Compile Include="UI\Page\Form_JbcmpMain.cs" />
     <Compile Include="UI\Page\Form_JbCgspd_Operation.cs" />
     <Compile Include="UI\Page\Panel_JbCpspd.cs" />

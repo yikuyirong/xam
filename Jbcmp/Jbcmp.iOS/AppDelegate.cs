@@ -24,9 +24,14 @@ namespace Jbcmp.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            //载入字体
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.IoniconsModule());
+
             global::Xamarin.Forms.Forms.Init();
 
             global::Xamarin.Forms.DependencyService.Register<Hungsum.iOS.IOSPlatformExtension>();
+
+            FormsPlugin.Iconize.iOS.IconControls.Init();
 
             LoadApplication(new App());
 

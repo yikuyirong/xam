@@ -35,7 +35,7 @@ namespace Hungsum.Jbcmp.OA.Workflow.UI.Page
                 Flag = UcDateInput.NOW
             };
 
-            this.ucUserSwitcher = new UcCheckedInput("0,未审批;1,正在审批;2,审批同意;3,审批驳回;4,用户终止", "0,1,2,3,4")
+            this.ucUserSwitcher = new UcCheckedInput("0,未审批;1,正在审批;2,审批同意;3,审批驳回;4,用户终止", "0,1,2,3,4",true)
             {
                 CName = "审批状态",
                 AllowEmpty = false,

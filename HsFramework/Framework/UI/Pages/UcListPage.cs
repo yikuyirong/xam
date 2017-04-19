@@ -14,6 +14,8 @@ namespace Hungsum.Framework.UI.Pages
 {
     public abstract class UcListPage : UcContentPage
     {
+        protected StackLayout mainLayout;
+
         protected ListView lv;
 
         public UcListPage()
@@ -51,7 +53,11 @@ namespace Hungsum.Framework.UI.Pages
                 }
             });
 
-            Content = lv;
+            mainLayout = new StackLayout() { Spacing = 0 };
+
+            mainLayout.Children.Add(lv);
+
+            Content = mainLayout;
         }
 
 

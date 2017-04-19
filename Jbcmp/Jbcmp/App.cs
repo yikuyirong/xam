@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 using System.Xml.Linq;
 using Hungsum.Jbcmp.UI.Page;
-using Hungsum.jbcmp.Utilities;
+using Hungsum.Jbcmp.Utilities;
 
 namespace Hungsum.Jbcmp
 {
@@ -19,6 +19,7 @@ namespace Hungsum.Jbcmp
         {
             //本次测试时不要使用127.0.0.1或localhost，会引发connection refused异常。
             this.WSUtil = new JbcmpWSUtil() { URL = "http://app.jiabaoruye.com.cn/jbcmp/jbcmpwebservice.asmx/" };
+            this.WSUtil = new JbcmpWSUtil() { URL = "http://192.168.1.164/jbcmpwebservice.asmx/" };
         }
 
         protected override UcMainPage getMainPage(XElement xMenus)

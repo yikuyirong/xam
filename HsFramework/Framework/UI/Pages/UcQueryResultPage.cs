@@ -23,20 +23,11 @@ namespace Hungsum.Framework.UI.Pages
 
         #region UcListPage
 
-        protected override async void onInit()
+        protected override void onInit()
         {
             base.onInit();
 
-            this.lv.ItemsSource = await retrieve();
-        }
-
-        protected override async Task<List<HsLabelValue>> retrieve()
-        {
-            return await Task.FromResult(_items);
-
-            //await Task.Delay(1);
-
-            //return _items;
+            this.lv.ItemsSource = _items;
         }
 
         protected override async void itemClick(object item)

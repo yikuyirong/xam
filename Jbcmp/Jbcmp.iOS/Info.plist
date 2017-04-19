@@ -31,5 +31,9 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleShortVersionString</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>iconize-ionicons.ttf</string>
+	</array>
 </dict>
 </plist>

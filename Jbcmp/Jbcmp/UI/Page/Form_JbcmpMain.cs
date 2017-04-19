@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Hungsum.Framework.Models;
 using Hungsum.OA.UI.Page;
+using Hungsum.Jbcmp.Models;
 
 namespace Hungsum.Jbcmp.UI.Page
 {
@@ -19,30 +20,12 @@ namespace Hungsum.Jbcmp.UI.Page
         {
             switch (item.Value)
             {
-                //case SdrdFuncKey.RD客户维护:
-                //    await Navigation.PushAsync(new Form_Sdrdkh_Operation());
-                //    break;
-                //case SdrdFuncKey.RD客户交流记录维护:
-                //    await Navigation.PushAsync(new Form_Sdrdkhjljl_Operation());
-                //    break;
-                //case SdrdFuncKey.RD客户交流记录浏览:
-                //    await Navigation.PushAsync(new Form_Sdrdkhjljl_Query());
-                //    break;
-                //case SdrdFuncKey.RD项目维护:
-                //    await Navigation.PushAsync(new Form_Sdrdxm_Operation());
-                //    break;
-                //case SdrdFuncKey.RD合同维护:
-                //    await Navigation.PushAsync(new Form_Sdrdht_Operation());
-                //    break;
-                //case SdrdFuncKey.RD合同确认:
-                //    await Navigation.PushAsync(new Form_Sdrdht_Confirm());
-                //    break;
-                //case SdrdFuncKey.RD合同回款记录维护:
-                //    await Navigation.PushAsync(new Form_Sdrdhthkjl_Operation());
-                //    break;
-                //case SdrdFuncKey.RD合同考核记录维护:
-                //    await Navigation.PushAsync(new Form_Sdrdhtkhjl_Operation());
-                //    break;
+                case JbcmpFuncKey.JB采购审批单:
+                    await Navigation.PushAsync(new Form_JbCgspd_Operation());
+                    break;
+                case JbcmpFuncKey.JB采购审批单浏览:
+                    await Navigation.PushAsync(new Form_JbCgspd_Query());
+                    break;
                 default:
                     await base.doAction(item);
                     break;
