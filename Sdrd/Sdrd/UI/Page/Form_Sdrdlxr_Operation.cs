@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public class Form_Sdrdlxr_Operation : UcDJListPage
+    public class Form_Sdrdlxr_Operation : Form_DJ
     {
         private HsLabelValue _kh;
 

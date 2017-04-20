@@ -12,13 +12,13 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public abstract class UcListPage : UcContentPage
+    public abstract class Form_Base : UcContentPage
     {
         protected StackLayout mainLayout;
 
         protected ListView lv;
 
-        public UcListPage()
+        public Form_Base()
         {
             this.lv = new ListView()
             {
@@ -145,7 +145,7 @@ namespace Hungsum.Framework.UI.Pages
 
         #region DoData
 
-        protected virtual async Task<string> callDoData(HsActionKey actionKey, HsLabelValue item)
+        protected virtual  async Task<string> callDoData(HsActionKey actionKey, HsLabelValue item)
         {
             if (item == null)
             {

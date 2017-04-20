@@ -12,12 +12,12 @@ namespace Hungsum.Jbcmp.Utilities
     {
         #region 采购审批单
 
-        public async Task<List<HsLabelValue>> ShowJbCgspds(string progressId,string beginDate,string endDate,string spzt)
+        public async Task<List<HsLabelValue>> ShowJbCgspds(string progressId, string beginDate, string endDate, string spzt)
         {
             return await ShowJbCgspds(progressId, null, beginDate, endDate, spzt);
         }
 
-        public async Task<List<HsLabelValue>> ShowJbCgspds(string progressId,string dwbh, string beginDate, string endDate, string spzt)
+        public async Task<List<HsLabelValue>> ShowJbCgspds(string progressId, string dwbh, string beginDate, string endDate, string spzt)
         {
             XElement xData = new XElement("Data",
                 new XElement("ProgressId", progressId),
@@ -38,21 +38,33 @@ namespace Hungsum.Jbcmp.Utilities
         }
 
 
-        public async Task<string> UpdateJbCgspd(string progressId, string djId, string djrq, string cgbt, string sfjj, string cgyy, string bz,string strmx, int flag)
+        public async Task<string> UpdateJbCgspd(string progressId, string djId, string djrq, string cgbt, string sfjj, string cgyy, string bz, string strmx, int flag)
         {
             XElement xData = new XElement("Data",
                 new XElement("ProgressId", progressId),
                 new XElement("DjId", djId),
+                new XElement("Djrq", djrq),
                 new XElement("Cgbt", cgbt),
                 new XElement("Sfjj", sfjj),
                 new XElement("Cgyy", cgyy),
                 new XElement("Bz", bz),
-                new XElement("Strmx", strmx),
+                new XElement("StrMx", strmx),
                 new XElement("Flag", flag));
 
             string data = await postByName("UpdateJbCgspd", HsGZip.CompressString(xData.ToString(SaveOptions.DisableFormatting)));
 
             return data;
+        }
+
+        public async Task<HsLabelValue> GetJbCgspd(string progressId, string djId)
+        {
+            XElement xData = new XElement("Data",
+                                new XElement("ProgressId", progressId),
+                                new XElement("DjId", djId));
+
+            string data = await postByName("GetJbCgspd", HsGZip.CompressString(xData.ToString(SaveOptions.DisableFormatting)));
+
+            return XElement.Parse(HsGZip.DecompressString(data)).ToHsLabelValue();
         }
 
         #endregion

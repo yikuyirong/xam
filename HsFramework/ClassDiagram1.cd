@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Hungsum.Framework.UI.Pages.UcCarouselPage" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAQAACBAQAAEVAEAAABgAAAAAEAAAAIQCABAQ=</HashCode>
+      <FileName>Framework\UI\Pages\UcCarouselPage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Hungsum.Framework.UI.Pages.Panel_Main" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAgAAAAAIAAAAAAAAACAAAACCAAAA=</HashCode>
+      <FileName>Framework\UI\Pages\Panel_Main.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Hungsum.Framework.UI.Pages.Panel_BrowseImages" Collapsed="true">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAABAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\UI\Pages\Panel_BrowseImages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hungsum.Framework.UI.Pages.Panel_ZD" Collapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAEAAAIQAAEAAAAAApAgAACAAAEAAAACEAAA=</HashCode>
+      <FileName>Framework\UI\Pages\Panel_ZD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hungsum.Framework.UI.Pages.Panel_Login" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAUgAAAAAAAAAAAAABAAQABAAAAAAAAAEACA=</HashCode>
+      <FileName>Framework\UI\Pages\Panel_Login.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Hungsum.Framework.UI.Pages.Panel_QueryCondition" Collapsed="true">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQEAAAAAAEAAAAAAAAAAAAAAAAEIAAACEAAA=</HashCode>
+      <FileName>Framework\UI\Pages\Panel_QueryCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hungsum.Framework.UI.Pages.Panel_DJ" Collapsed="true">
+    <Position X="10.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkAAhAAAQEAIMQAAEBgEhQADEABAAAAAEAgCAAAAAA=</HashCode>
+      <FileName>Framework\UI\Pages\Panel_DJ.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hungsum.Framework.UI.Pages.Panel_DJDetail" Collapsed="true">
+    <Position X="10.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\UI\Pages\Panel_DJDetail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

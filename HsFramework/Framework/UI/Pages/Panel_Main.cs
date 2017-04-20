@@ -15,11 +15,11 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public class UcMainPage : UcCarouselPage, IUcMainPage
+    public class Panel_Main : UcCarouselPage, IUcMainPage
     {
         public event EventHandler Logout;
 
-        public UcMainPage(XElement xMenus)
+        public Panel_Main(XElement xMenus)
         {
 
             foreach (XElement xMenu in xMenus.Elements("Menu")) //一级目录
@@ -70,7 +70,7 @@ namespace Hungsum.Framework.UI.Pages
 
                 XElement xData = XElement.Parse(result);
 
-                await Navigation.PushAsync(new UcQueryConditionPage(xData));
+                await Navigation.PushAsync(new Panel_QueryCondition(xData));
             }
             else
             {
@@ -106,7 +106,7 @@ namespace Hungsum.Framework.UI.Pages
 
             XElement xData = XElement.Parse(result);
 
-            await Navigation.PushAsync(new UcQueryConditionPage(xData));
+            await Navigation.PushAsync(new Panel_QueryCondition(xData));
         }
 
         protected override async void callAction(HsActionKey actionKey, object data)
@@ -115,7 +115,7 @@ namespace Hungsum.Framework.UI.Pages
             {
                 if (actionKey == SysActionKeys.UserDo1)
                 {
-                    UcHelpPopupPage helpPage = new UcHelpPopupPage();
+                    Popup_Help helpPage = new Popup_Help();
 
                     helpPage.PopupData += new EventHandler<HsEventArgs<HsActionKey, object>>(async (sender, e) =>
                     {
@@ -127,7 +127,7 @@ namespace Hungsum.Framework.UI.Pages
                             }
                             else if (e.Data == SysActionKeys.修改密码)
                             {
-                                await PopupNavigation.PushAsync(new UcChangePasswordPage());
+                                await PopupNavigation.PushAsync(new Panel_ChangePassword());
                             }
                         }
                         catch (Exception ex)

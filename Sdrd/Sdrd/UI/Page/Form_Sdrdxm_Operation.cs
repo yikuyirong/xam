@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public class Form_Sdrdxm_Operation : UcDJListPage
+    public class Form_Sdrdxm_Operation : Form_DJ
     {
         public Form_Sdrdxm_Operation()
         {

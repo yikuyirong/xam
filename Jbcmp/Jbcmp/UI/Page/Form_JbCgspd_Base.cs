@@ -1,4 +1,5 @@
 ﻿using Hungsum.Framework.UI.Pages;
+using Hungsum.Jbcmp.Models;
 using Hungsum.Jbcmp.OA.Workflow.UI.Page;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,11 @@ namespace Hungsum.Jbcmp.UI.Page
     {
         public Form_JbCgspd_Base()
         {
+            this.djlx = JbcmpDjlx.JBCGSPD;
+
             this.uniqueIdField = "DjId";
+
+            this.allowStartRegularLc = true;
         }
 
         public override string GetTitle()

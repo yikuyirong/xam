@@ -14,7 +14,7 @@ using Hungsum.Framework.Exceptions;
 
 namespace Hungsum.OA.Workflow.UI.Page
 {
-    public class Panel_HsLcspjl : UcDJPage
+    public class Panel_HsLcspjl : Panel_DJ
     {
         private bool _hasNextBz = false;
 
@@ -45,7 +45,6 @@ namespace Hungsum.OA.Workflow.UI.Page
 
             this.PP = new PageParams() { ImageTitle = "审批图片", detailTitle = "审批附件" };
 
-
         }
 
         protected override void onInit()
@@ -57,38 +56,44 @@ namespace Hungsum.OA.Workflow.UI.Page
             titleSaved = "流程审批记录";
         }
 
-
         protected override void onCreateMainItems()
         {
+            this._ucLczy = new UcTextInput();
             this._ucLczy.CName = "流程摘要";
             this._ucLczy.AllowEmpty = false;
             this._ucLczy.AllowEdit = false;
             this.controls.Add(this._ucLczy);
 
+            this._ucBzmc = new UcTextInput();
             this._ucBzmc.CName = "步骤名称";
             this._ucBzmc.AllowEmpty = false;
             this._ucBzmc.AllowEdit = false;
             this.controls.Add(this._ucBzmc);
 
+            this._ucDwmc = new UcTextInput();
             this._ucDwmc.CName = "审批人部门";
             this._ucDwmc.AllowEmpty = true;
             this._ucDwmc.AllowEdit = false;
             this.controls.Add(this._ucDwmc);
 
+            this._ucRolemc = new UcTextInput();
             this._ucRolemc.CName = "审批人角色";
             this._ucRolemc.AllowEmpty = true;
             this._ucRolemc.AllowEdit = false;
             this.controls.Add(this._ucRolemc);
 
+            this._ucZdr = new UcTextInput();
             this._ucZdr.CName = "审批人";
             this._ucZdr.AllowEmpty = false;
             this._ucZdr.AllowEdit = false;
             this.controls.Add(this._ucZdr);
 
+            this._ucSpyj = new UcTextInput();
             this._ucSpyj.CName = "审批意见";
             this._ucSpyj.AllowEmpty = true;
             this.controls.Add(this._ucSpyj);
 
+            this._ucJlzt = new UcCheckedInput("1,同意;2,不同意", "", false);
             this._ucJlzt.CName = "审批状态";
             this._ucJlzt.AllowEmpty = false;
             this._ucJlzt.DataChanged += new EventHandler<HsEventArgs<string>>((sender, e) =>

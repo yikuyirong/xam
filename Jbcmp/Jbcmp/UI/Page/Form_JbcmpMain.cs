@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using Hungsum.Framework.Models;
 using Hungsum.OA.UI.Page;
 using Hungsum.Jbcmp.Models;
+using Hungsum.Jbcmp.Utilities;
 
 namespace Hungsum.Jbcmp.UI.Page
 {
@@ -28,6 +29,25 @@ namespace Hungsum.Jbcmp.UI.Page
                     break;
                 default:
                     await base.doAction(item);
+                    break;
+            }
+        }
+
+        protected override async Task openDJ(string djlx, string djId, bool auditOnly)
+        {
+            switch (djlx)
+            {
+                case JbcmpDjlx.JBCGSPD:
+                    {
+                        HsLabelValue item = await ((JbcmpWSUtil)GetWSUtil()).GetJbCgspd(GetLoginData().ProgressId, djId);
+
+                        Panel_JbCgspd panel = new Panel_JbCgspd(item) { AuditOnly = auditOnly};
+
+                        await Navigation.PushAsync(panel);
+                    }
+                    break;
+                default:
+                    await base.openDJ(djlx, djId, auditOnly);
                     break;
             }
         }

@@ -106,5 +106,17 @@ namespace Hungsum.Framework.UI.Pages
             }
         }
 
+        public string UserDo1Text
+        {
+            get { return this.btnUserDo1.Text; }
+            set { this.btnUserDo1.Text = value; }
+        }
+        
+        public string UserDo2Text
+        {
+            get { return this.btnUserDo2.Text; }
+            set { this.btnUserDo2.Text = value; }
+        }
+
     }
 }

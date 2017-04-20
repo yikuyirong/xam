@@ -13,7 +13,7 @@ using Hungsum.Framework.UI.Views;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public abstract class Form_Sdrdhthkjl_Base : UcDJListPage
+    public abstract class Form_Sdrdhthkjl_Base : Form_DJ
     {
         public Form_Sdrdhthkjl_Base()
         {

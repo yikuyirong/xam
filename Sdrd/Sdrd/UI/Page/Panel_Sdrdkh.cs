@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public class Panel_Sdrdkh : UcDJPage
+    public class Panel_Sdrdkh : Panel_DJ
     {
         private UcTextInput _ucKhmc;
 

@@ -12,7 +12,7 @@ using Hungsum.Framework.Exceptions;
 
 namespace Hungsum.OA.UI.Page
 {
-    public class Form_HsOAMain : UcMainPage
+    public class Form_HsOAMain : Panel_Main
     {
         public Form_HsOAMain(XElement xMenus) : base(xMenus) { }
 
@@ -23,19 +23,19 @@ namespace Hungsum.OA.UI.Page
                 case HsOAFuncKey.HS待办事项:
 
                     Form_HsDbsx_Operation form = new Form_HsDbsx_Operation();
-                    form.OpenDJ += new EventHandler<Framework.Events.HsEventArgs<HsLabelValue>>(async (sender, e) =>
-                    {
-                        try
-                        {
-                            string djlx = e.Data.GetValueByLabel("Djlx");
-                            string djId = e.Data.GetValueByLabel("DjId");
-                            await this.openDJ(djlx, djId);
-                        }
-                        catch (Exception ex)
-                        {
-                            this.ShowError(ex.Message);
-                        }
-                    });
+                    form.OpenDJ += new EventHandler<Framework.Events.HsEventArgs<HsLabelValue, bool>>(async (sender, e) =>
+                     {
+                         try
+                         {
+                             string djlx = e.Data.GetValueByLabel("Djlx");
+                             string djId = e.Data.GetValueByLabel("DjId");
+                             await this.openDJ(djlx, djId, e.Data2);
+                         }
+                         catch (Exception ex)
+                         {
+                             this.ShowError(ex.Message);
+                         }
+                     });
                     await Navigation.PushAsync(form);
                     break;
                 default:
@@ -44,7 +44,7 @@ namespace Hungsum.OA.UI.Page
             }
         }
 
-        protected async Task openDJ(string djlx, string djId)
+        protected virtual async Task openDJ(string djlx, string djId, bool auditOnly)
         {
             switch (djlx)
             {

@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public class UcLoginPage : UcZDPage, IUcLoginPage
+    public class Panel_Login : Panel_ZD, IUcLoginPage
     {
         public event EventHandler<HsEventArgs<XElement>> LoginSuccess;
 
@@ -28,7 +28,7 @@ namespace Hungsum.Framework.UI.Pages
 
         private UcChooseItemBase ucIsSaved;
 
-        public UcLoginPage()
+        public Panel_Login()
         {
             //清除现有LoginData
             ((HsApp)Application.Current).LoginData = null;

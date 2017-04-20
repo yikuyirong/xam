@@ -1,4 +1,5 @@
 ﻿using FormsPlugin.Iconize;
+using Hungsum.Framework.Events;
 using Hungsum.Framework.Models;
 using Hungsum.Jbcmp.OA.Workflow.UI.Page;
 using Hungsum.Jbcmp.UI.Page;
@@ -59,7 +60,7 @@ namespace Hungsum.Jbcmp.UI.Page
         {
             Panel_JbCgspd panel = new Panel_JbCgspd();
 
-            panel.UpdateComplete += new EventHandler(async (sender, e) =>
+            panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
             {
                 try
                 {
@@ -81,7 +82,7 @@ namespace Hungsum.Jbcmp.UI.Page
 
             if (item.GetValueByLabel("Spzt") == "0")
             {
-                panel.UpdateComplete += new EventHandler(async (sender, e) =>
+                panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
                 {
                     try
                     {

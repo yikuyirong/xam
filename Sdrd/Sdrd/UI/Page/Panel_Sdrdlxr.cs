@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public class Panel_Sdrdlxr : UcDJPage
+    public class Panel_Sdrdlxr : Panel_DJ
     {
 
         private HsLabelValue _kh;

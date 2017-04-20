@@ -22,7 +22,7 @@ namespace Hungsum.Jbcmp
             this.WSUtil = new JbcmpWSUtil() { URL = "http://192.168.1.164/jbcmpwebservice.asmx/" };
         }
 
-        protected override UcMainPage getMainPage(XElement xMenus)
+        protected override Panel_Main getMainPage(XElement xMenus)
         {
             return new Form_JbcmpMain(xMenus);
         }

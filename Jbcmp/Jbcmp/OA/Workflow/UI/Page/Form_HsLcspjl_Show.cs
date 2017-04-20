@@ -12,7 +12,6 @@ namespace Hungsum.OA.Workflow.UI.Page
 {
     public class Form_HsLcspjl_Show : Form_HsLcspjl_Base
     {
-        //private HsLabelValue _currentLcspjl;
         private string _djlx, _djId;
 
         public Form_HsLcspjl_Show(HsLabelValue item) : this(item.GetValueByLabel("Djlx"), item.GetValueByLabel("DjId"))
@@ -39,28 +38,9 @@ namespace Hungsum.OA.Workflow.UI.Page
 
         protected override async Task modifyItem(HsLabelValue item)
         {
-            //base.modifyItem(item);
+            Panel_HsLcspjl panel = new Panel_HsLcspjl(item) { AuditOnly = true };
+
+            await Navigation.PushAsync(panel);
         }
-
-
-        //protected async override void modifyItem(HsLabelValue item)
-        //{
-        //    try
-        //    {
-        //        Panel_Sdrdkh panel = new Panel_Sdrdkh(item);
-
-        //        panel.UpdateComplete += new EventHandler((sender, e) =>
-        //        {
-        //            this.callRetrieve(false);
-        //        });
-
-        //        await Navigation.PushAsync(panel);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ShowError(ex.Message);
-        //    }
-        //}
-
     }
 }

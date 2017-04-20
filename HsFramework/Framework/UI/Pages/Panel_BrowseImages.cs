@@ -8,11 +8,11 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public class UcBrowseImagesPage : UcCarouselPage
+    public class Panel_BrowseImages : UcCarouselPage
     {
         private List<ContentPage> _pages = new List<ContentPage>();
 
-        public UcBrowseImagesPage(IEnumerable<ImageSource> images, int selectedIndex = 0)
+        public Panel_BrowseImages(IEnumerable<ImageSource> images, int selectedIndex = 0)
         {
             foreach (ImageSource image in images)
             {

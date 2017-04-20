@@ -15,7 +15,7 @@ using System.Xml.Linq;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public class Panel_Sdrdhthkjl : UcDJPage
+    public class Panel_Sdrdhthkjl : Panel_DJ
     {
         private UcAutoCompleteInput _ucHt;
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public class Panel_Sdrdkhjljl : UcDJPage
+    public class Panel_Sdrdkhjljl : Panel_DJ
     {
         private UcAutoCompleteInput _ucXm;
 

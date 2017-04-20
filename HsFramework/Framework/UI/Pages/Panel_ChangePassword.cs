@@ -10,7 +10,7 @@ using Rg.Plugins.Popup.Services;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public class UcChangePasswordPage : UcNormalPopupPage<object>
+    public class Panel_ChangePassword : UcNormalPopupPage<object>
     {
         private UcPassword ucOldPassword;
 
@@ -18,7 +18,7 @@ namespace Hungsum.Framework.UI.Pages
 
         private UcPassword ucNewPassword2;
 
-        public UcChangePasswordPage()
+        public Panel_ChangePassword()
         {
             this.Title = "修改密码";
 

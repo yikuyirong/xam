@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public class Form_Sdrdkh_Operation : UcDJListPage
+    public class Form_Sdrdkh_Operation : Form_DJ
     {
         public Form_Sdrdkh_Operation()
         {

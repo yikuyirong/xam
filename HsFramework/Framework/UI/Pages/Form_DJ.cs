@@ -14,8 +14,33 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public abstract class UcDJListPage : UcListPage
+    public abstract class Form_DJ : Form_Base
     {
+        #region djlx
+
+        protected string djlx = "";
+
+        #endregion
+
+        #region AuditOnly
+
+        private bool _auditOnly = false;
+
+        public bool AuditOnly
+        {
+            get { return _auditOnly; }
+            set
+            {
+                _auditOnly = value;
+
+                onCanExecuteChanged();
+            }
+        }
+
+        #endregion
+
+        #region UniqueField
+
         private string _uniqueIdField;
 
         protected string uniqueIdField
@@ -32,7 +57,9 @@ namespace Hungsum.Framework.UI.Pages
             set { _uniqueIdField = value; }
         }
 
+        #endregion
 
+        #region Retrieve Controls
 
         protected UcDateInput ucBeginDate;
 
@@ -40,7 +67,9 @@ namespace Hungsum.Framework.UI.Pages
 
         protected UcCheckedInput ucUserSwitcher;
 
-        public UcDJListPage() : base() { }
+        #endregion
+
+        public Form_DJ() : base() { }
 
         protected override async void onInit()
         {
@@ -133,7 +162,7 @@ namespace Hungsum.Framework.UI.Pages
             }
             else
             {
-                await callAction(actionKey,item);
+                await base.callAction(actionKey, item);
             }
         }
 
@@ -196,6 +225,8 @@ namespace Hungsum.Framework.UI.Pages
                     HsToastHelper.ShowError(ex.Message);
                 }
             }
+
+
 
             #endregion
         }

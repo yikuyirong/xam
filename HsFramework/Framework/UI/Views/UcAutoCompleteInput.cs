@@ -102,12 +102,7 @@ namespace Hungsum.Framework.UI.Views
                     page.PopupData += new EventHandler<HsEventArgs<HsActionKey, string>>((sender,e)=>
                     {
                         ControlValue = e.Data2;
-                    }); 
-
-                    //page.DataSelected += new EventHandler<Events.HsEventArgs<string>>((sender, e) =>
-                    //{
-                    //    ControlValue = e.Data;
-                    //});
+                    });
 
                     await PopupNavigation.PushAsync(page);
                 }
@@ -169,8 +164,8 @@ namespace Hungsum.Framework.UI.Views
 
                 //ControlButton
 
-                btnUserDo1.Text = "重置";
-                btnUserDo2.Text = "取消";
+                UserDo1Text = "重置";
+                UserDo2Text = "取消";
 
 
                 //Listview

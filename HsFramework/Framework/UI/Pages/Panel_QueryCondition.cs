@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public class UcQueryConditionPage : UcZDPage
+    public class Panel_QueryCondition : Panel_ZD
     {
         private XElement _xQuery;
 
@@ -19,7 +19,7 @@ namespace Hungsum.Framework.UI.Pages
 
         private string _queryName = null;
 
-        public UcQueryConditionPage(XElement xQuery) : base()
+        public Panel_QueryCondition(XElement xQuery) : base()
         {
             this._xQuery = xQuery;
 
@@ -68,7 +68,7 @@ namespace Hungsum.Framework.UI.Pages
 
             List<HsLabelValue> items = await this.GetWSUtil().QueryResult(GetLoginData().ProgressId, this._queryName, xArgs);
 
-            UcQueryResultPage page = new UcQueryResultPage(items);
+            Form_QueryResult page = new Form_QueryResult(items);
 
             await Navigation.PushAsync(page);
 

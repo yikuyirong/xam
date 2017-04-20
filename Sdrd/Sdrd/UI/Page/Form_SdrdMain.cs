@@ -10,7 +10,7 @@ using Hungsum.Sdrd.Models;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public class Form_SdrdMain : UcMainPage
+    public class Form_SdrdMain : Panel_Main
     {
         public Form_SdrdMain(XElement xMenus) : base(xMenus) { }
 

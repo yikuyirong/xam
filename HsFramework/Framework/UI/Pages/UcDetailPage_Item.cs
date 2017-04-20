@@ -17,12 +17,15 @@ using System.Diagnostics;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public abstract class UcDJDetailPage : UcListPage, IControlValue
+    public abstract class UcDetailPage_Item : Form_Base, IControlValue
     {
         protected ObservableCollection<HsLabelValue> datas;
 
-        public UcDJDetailPage(string title)
+        public UcDetailPage_Item(string title)
         {
+
+            CName = title;
+
             this.datas = new ObservableCollection<HsLabelValue>();
 
             this.datas.CollectionChanged += new NotifyCollectionChangedEventHandler((sender, e) =>
@@ -32,9 +35,39 @@ namespace Hungsum.Framework.UI.Pages
 
             this.lv.ItemsSource = datas;
 
-            this.AllowEdit = true;
+            this.AllowEdit = true; //初始值为真
 
-            this.mainLayout.Children.Insert(0,new UcHeaderTitle(title));
+            #region 标题栏
+
+            UcHeaderTitle headerTitle = new UcHeaderTitle(title);
+
+            #endregion
+
+            #region 控制栏
+
+            StackLayout controlLayout = new StackLayout()
+            {
+                Orientation = StackOrientation.Horizontal,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.Start,
+                BackgroundColor = Color.White
+            };
+
+            controlLayout.Children.Add(
+                new Button()
+                {
+                    Text = "添加明细",
+                    Command = this,
+                    CommandParameter = new HsCommandParams(SysActionKeys.新建),
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Button)),
+                });
+
+            #endregion
+
+            this.mainLayout.Children.Insert(0, headerTitle);
+
+            this.mainLayout.Children.Insert(1, controlLayout);
         }
 
 
@@ -69,10 +102,12 @@ namespace Hungsum.Framework.UI.Pages
             }
         }
 
-        protected virtual HsLabelValue createHsLabelValueFromJObject(HsLabelValue item, JObject obj)
-        {
-            return item;
-        }
+        /// <summary>
+        /// 根据items集合内的数据补全Label与Value值，返回本身即可。
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        protected abstract HsLabelValue createLabelAndValue(HsLabelValue item);
 
         #region IControlValue
 
@@ -124,7 +159,7 @@ namespace Hungsum.Framework.UI.Pages
                                     item.AddItem(new HsLabelValue() { Label = jKv.Key, Value = jKv.Value.ToString() });
                                 }
 
-                                datas.Add(createHsLabelValueFromJObject(item, jObj));
+                                datas.Add(createLabelAndValue(item));
                             }
                         }
                     }
@@ -173,6 +208,15 @@ namespace Hungsum.Framework.UI.Pages
         public virtual void Reset()
         {
             this.datas.Clear();
+        }
+
+        #endregion
+
+        #region ICommand
+
+        public override bool CanExecute(object parameter)
+        {
+            return AllowEdit;
         }
 
         #endregion

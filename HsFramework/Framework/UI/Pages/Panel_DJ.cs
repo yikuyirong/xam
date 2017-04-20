@@ -1,14 +1,28 @@
-﻿using Hungsum.Framework.Models;
+﻿using Hungsum.Framework.Events;
+using Hungsum.Framework.Models;
 using Hungsum.Framework.UI.Views;
 
 using System;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public abstract class UcDJPage : UcZDPage
+    public abstract class Panel_DJ : Panel_ZD
     {
+        /// <summary>
+        /// UpdateComplete事件中携带的数据，默认为null
+        /// </summary>
+        protected object updateCompleteData = null;
 
-        public event EventHandler UpdateComplete;
+        #region Event UpdateComplete
+
+        public event EventHandler<HsEventArgs<object>> UpdateComplete;
+
+        protected void onUpdateComplete(object obj)
+        {
+            this.UpdateComplete?.Invoke(this, new HsEventArgs<object>() { Data = obj });
+        }
+
+        #endregion
 
         protected HsLabelValue userData;
 
@@ -114,9 +128,9 @@ namespace Hungsum.Framework.UI.Pages
 
         #region 附加页
 
-        protected UcImageDetailPage imagePage;
+        protected UcDetailPage_Image imagePage;
 
-        protected UcFileDetailPage filePage;
+        protected UcDetailPage_File filePage;
 
         #endregion
 
@@ -140,7 +154,7 @@ namespace Hungsum.Framework.UI.Pages
 
         #endregion
 
-        public UcDJPage(HsLabelValue item = null) : base()
+        public Panel_DJ(HsLabelValue item = null) : base()
         {
             this.userData = item;
         }
@@ -156,9 +170,9 @@ namespace Hungsum.Framework.UI.Pages
                 this.mainContent.Children.Insert(0, new UcHeaderTitle(this.PP.MainTitle));
 
                 //加入图像页
-                if (this.PP.HasImageTab) 
+                if (this.PP.HasImageTab)
                 {
-                    imagePage = new UcImageDetailPage(PP.ImageTitle);
+                    imagePage = new UcDetailPage_Image(PP.ImageTitle);
 
                     this.controls.Add(imagePage);
 
@@ -168,7 +182,7 @@ namespace Hungsum.Framework.UI.Pages
                 //加入文件页
                 if (this.PP.HasFileTab)
                 {
-                    filePage = new UcFileDetailPage(PP.FileTitle);
+                    filePage = new UcDetailPage_File(PP.FileTitle);
 
                     this.controls.Add(filePage);
 
@@ -284,10 +298,13 @@ namespace Hungsum.Framework.UI.Pages
                     }
                 }
 
-                this.ShowInformation(result);
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    this.ShowInformation(result);
+                }
 
                 //
-                this.UpdateComplete?.Invoke(this, null);
+                this.onUpdateComplete(this.updateCompleteData);
 
                 if (closeAfterUpdate)
                 {

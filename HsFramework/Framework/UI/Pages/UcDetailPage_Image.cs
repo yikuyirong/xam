@@ -18,9 +18,9 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public class UcImageDetailPage : UcDJAnnexListPage<HsImage>
+    public class UcDetailPage_Image : UcDetailPage_Annex<HsImage>
     {
-        public UcImageDetailPage(string title) : base(title)
+        public UcDetailPage_Image(string title) : base(title)
         {
             this.liveview.RowHeight = 100;
         }
@@ -67,7 +67,7 @@ namespace Hungsum.Framework.UI.Pages
             {
                 //await Navigation.PushAsync(new UcBrowseImagesPage(datas.Select(r => r.ImageData), datas.IndexOf(item)));
 
-                await Navigation.PushAsync(new UcBrowseImagesPage.UcShowImagePage(item.ImageData));
+                await Navigation.PushAsync(new Panel_BrowseImages.UcShowImagePage(item.ImageData));
 
                 //await Navigation.PushAsync(new UcBrowseImagesPage.FullScreenImagePage(item.ImageData, "Test", 0, 1));
 

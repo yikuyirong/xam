@@ -11,9 +11,9 @@ using Xamarin.Forms;
 
 namespace Hungsum.OA.Workflow.UI.Page
 {
-    public abstract class Form_HsLcspjl_Base : UcDJListPage
+    public abstract class Form_HsLcspjl_Base : Form_DJ
     {
-        public event EventHandler<HsEventArgs<HsLabelValue>> OpenDJ;
+        public event EventHandler<HsEventArgs<HsLabelValue,bool>> OpenDJ;
 
         public Form_HsLcspjl_Base()
         {
@@ -26,9 +26,9 @@ namespace Hungsum.OA.Workflow.UI.Page
             return "审批记录";
         }
 
-        protected void onOpenDJ(HsLabelValue item)
+        protected void onOpenDJ(HsLabelValue item,bool auditOnly)
         {
-            this.OpenDJ?.Invoke(this, new HsEventArgs<HsLabelValue>() { Data = item });
+            this.OpenDJ?.Invoke(this, new HsEventArgs<HsLabelValue, bool>() { Data = item, Data2 = auditOnly });
         }
     }
 }

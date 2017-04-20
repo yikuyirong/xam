@@ -25,7 +25,7 @@ namespace Hungsum.Sdrd
 
         }
 
-        protected override UcMainPage getMainPage(XElement xMenus)
+        protected override Panel_Main getMainPage(XElement xMenus)
         {
             return new Form_SdrdMain(xMenus);
         }

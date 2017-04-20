@@ -15,6 +15,43 @@ namespace Hungsum.OA.Utilities
     {
         #region 工作流
 
+        public async Task<List<HsLabelValue>> GetHsLcmbs(string progressId, string djlx)
+        {
+            XElement xData = new XElement("Data",
+                new XElement("ProgressId", progressId),
+                new XElement("Djlx", djlx));
+
+            string data = await postByName("GetHsLcmbs", HsGZip.CompressString(xData.ToString(SaveOptions.DisableFormatting)));
+
+            data = HsGZip.DecompressString(data);
+
+            return data.ToHsLabelValues();
+        }
+
+        public async Task<string> StartRegularHsLc(string progressId, string mbId, string djId)
+        {
+            XElement xData = new XElement("Data",
+                    new XElement("ProgressId", progressId),
+                    new XElement("MbId", mbId),
+                    new XElement("DjId", djId));
+
+            string data = await postByName("StartRegularHsLc", HsGZip.CompressString(xData.ToString(SaveOptions.DisableFormatting)));
+
+            return data;
+        }
+
+        public async Task<string> OverHsLc(string progressId, string djlx, string djId)
+        {
+            XElement xData = new XElement("Data",
+                    new XElement("ProgressId", progressId),
+                    new XElement("Djlx", djlx),
+                    new XElement("DjId", djId));
+
+            string data = await postByName("OverHsLc", HsGZip.CompressString(xData.ToString(SaveOptions.DisableFormatting)));
+
+            return data;
+        }
+
         public async Task<List<HsLabelValue>> ShowDbsxs(string progressId, string begindate, string enddate, string jlzt)
         {
             XElement xData = new XElement("Data",

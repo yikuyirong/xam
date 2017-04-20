@@ -11,7 +11,7 @@ using Hungsum.Sdrd.Models;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public class Panel_Sdrdxm : UcDJPage
+    public class Panel_Sdrdxm : Panel_DJ
     {
 
         private UcAutoCompleteInput _ucKh;

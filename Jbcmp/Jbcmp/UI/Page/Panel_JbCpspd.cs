@@ -13,7 +13,7 @@ using System.Diagnostics;
 
 namespace Hungsum.Jbcmp.UI.Page
 {
-    public class Panel_JbCgspd : UcDJPage
+    public class Panel_JbCgspd : Panel_DJ
     {
         private UcDateInput _ucDjrq;
 
@@ -25,11 +25,11 @@ namespace Hungsum.Jbcmp.UI.Page
 
         private UcTextInput _ucBz;
 
-        private UcJbCgspdDetailPage _ucDetail;
+        private UcJbCgspdDetail _ucDetail;
 
         public Panel_JbCgspd(HsLabelValue item = null) : base(item)
         {
-            this.PP = new PageParams();
+            this.PP = new PageParams() { detailTitle = "采购明细" };
         }
 
         protected override void onInit()
@@ -66,8 +66,7 @@ namespace Hungsum.Jbcmp.UI.Page
             this._ucBz.CName = "备注";
             this.controls.Add(this._ucBz);
 
-            this._ucDetail = new UcJbCgspdDetailPage(this.PP.detailTitle);
-            this._ucDetail.CName = "采购明细";
+            this._ucDetail = new UcJbCgspdDetail(this.PP.detailTitle);
             this._ucDetail.AllowEmpty = false;
             this.controls.Add(this._ucDetail);
             this.Children.Insert(1, this._ucDetail);
@@ -103,15 +102,15 @@ namespace Hungsum.Jbcmp.UI.Page
             return "项目更新成功。";
         }
 
-        private class UcJbCgspdDetailPage : UcDJDetailPage
+        private class UcJbCgspdDetail : UcDetailPage_Item
         {
-            public UcJbCgspdDetailPage(string title) : base(title) { }
+            public UcJbCgspdDetail(string title) : base(title) { }
 
-            protected override HsLabelValue createHsLabelValueFromJObject(HsLabelValue item, JObject obj)
+            protected override HsLabelValue createLabelAndValue(HsLabelValue item)
             {
-                string mc = obj.GetValue("Mc").ToString();
+                string mc = item.GetValueByLabel("Mc");
 
-                string sl = obj.GetValue("Sl").ToString();
+                string sl = item.GetValueByLabel("Sl");
 
                 item.Label = mc;
                 item.Value = sl;
@@ -119,30 +118,157 @@ namespace Hungsum.Jbcmp.UI.Page
                 return item;
             }
 
-            private class Jbcgspdmx
+            protected override async Task addItem()
             {
-                public int MxId { get; set; }
+                Panel_JbCgspdDetail panel = new Panel_JbCgspdDetail();
 
-                public int DjId { get; set; }
+                panel.UpdateComplete += new EventHandler<Framework.Events.HsEventArgs<object>>((sender, e) =>
+                {
+                    try
+                    {
+                        HsLabelValue data = e.Data as HsLabelValue;
 
-                public string Mc { get; set; }
+                        if (data != null)
+                        {
+                            datas.Add(createLabelAndValue(data));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ShowError(ex.Message);
+                    }
+                });
 
-                public string Xh { get; set; }
+                await Navigation.PushAsync(panel);
+            }
 
-                public string Kcsl { get; set; }
+            protected override async Task modifyItem(HsLabelValue item)
+            {
+                Panel_JbCgspdDetail panel = new Panel_JbCgspdDetail(item) { AuditOnly = !AllowEdit };
 
-                public string Sl { get; set; }
+                panel.UpdateComplete += new EventHandler<Framework.Events.HsEventArgs<object>>((sender, e) =>
+                {
+                    try
+                    {
+                        HsLabelValue data = e.Data as HsLabelValue;
 
-                public string Dj { get; set; }
+                        if (data != null)
+                        {
+                            datas.Add(createLabelAndValue(data));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ShowError(ex.Message);
+                    }
+                });
 
-                public string Je { get; set; }
+                await Navigation.PushAsync(panel);
+            }
 
-                public string Yq { get; set; }
+        }
 
-                public string Bz { get; set; }
+        private class Panel_JbCgspdDetail : Panel_DJDetail
+        {
+            private UcTextInput _ucMc;
+
+            private UcTextInput _ucXh;
+
+            private UcTextInput _ucKcsl;
+
+            private UcTextInput _ucSl;
+
+            private UcTextInput _ucDj;
+
+            private UcTextInput _ucJe;
+
+            private UcTextInput _ucYq;
+
+            private UcTextInput _ucBz;
+
+
+            public Panel_JbCgspdDetail(HsLabelValue item = null) : base(item) { }
+
+            protected override void onInit()
+            {
+                base.onInit();
+
+                titleSaved = "采购明细";
+            }
+
+            protected override void onCreateMainItems()
+            {
+                this._ucMc = new UcTextInput();
+                this._ucMc.CName = "名称";
+                this._ucMc.AllowEmpty = false;
+                this.controls.Add(this._ucMc);
+
+                this._ucXh = new UcTextInput();
+                this._ucXh.CName = "型号";
+                this._ucXh.AllowEmpty = true;
+                this.controls.Add(this._ucXh);
+
+                this._ucKcsl = new UcTextInput();
+                this._ucKcsl.CName = "库存数量";
+                this._ucKcsl.AllowEmpty = true;
+                this.controls.Add(this._ucKcsl);
+
+                this._ucSl = new UcTextInput();
+                this._ucSl.CName = "采购数量";
+                this._ucSl.AllowEmpty = false;
+                this.controls.Add(this._ucSl);
+
+                this._ucDj = new UcTextInput();
+                this._ucDj.CName = "单价";
+                this._ucDj.AllowEmpty = true;
+                this.controls.Add(this._ucDj);
+
+                this._ucJe = new UcTextInput();
+                this._ucJe.CName = "金额";
+                this._ucJe.AllowEmpty = true;
+                this.controls.Add(this._ucJe);
+
+                this._ucYq = new UcTextInput();
+                this._ucYq.CName = "要求";
+                this._ucYq.AllowEmpty = true;
+                this.controls.Add(this._ucYq);
+
+                this._ucBz = new UcTextInput();
+                this._ucBz.CName = "备注";
+                this._ucBz.AllowEmpty = true;
+                this.controls.Add(this._ucBz);
 
             }
 
+            protected override void setData(HsLabelValue data)
+            {
+                this._ucMc.ControlValue = data.GetValueByLabel("Mc");
+                this._ucXh.ControlValue = data.GetValueByLabel("Xh");
+                this._ucKcsl.ControlValue = data.GetValueByLabel("Kcsl");
+                this._ucSl.ControlValue = data.GetValueByLabel("Sl");
+                this._ucDj.ControlValue = data.GetValueByLabel("Dj");
+                this._ucJe.ControlValue = data.GetValueByLabel("Je");
+                this._ucYq.ControlValue = data.GetValueByLabel("Yq");
+                this._ucBz.ControlValue = data.GetValueByLabel("Bz");
+            }
+
+            protected override async Task<string> update()
+            {
+                HsLabelValue item = new HsLabelValue();
+
+                item.AddItem(new HsLabelValue() { Label = "Mc", Value = this._ucMc.ControlValue });
+                item.AddItem(new HsLabelValue() { Label = "Xh", Value = this._ucXh.ControlValue });
+                item.AddItem(new HsLabelValue() { Label = "Kcsl", Value = this._ucKcsl.ControlValue });
+                item.AddItem(new HsLabelValue() { Label = "Sl", Value = this._ucSl.ControlValue });
+                item.AddItem(new HsLabelValue() { Label = "Dj", Value = this._ucDj.ControlValue });
+                item.AddItem(new HsLabelValue() { Label = "Je", Value = this._ucJe.ControlValue });
+                item.AddItem(new HsLabelValue() { Label = "Yq", Value = this._ucYq.ControlValue });
+                item.AddItem(new HsLabelValue() { Label = "Bz", Value = this._ucBz.ControlValue });
+
+                this.updateCompleteData = item;
+
+                return await Task.FromResult("");
+            }
         }
     }
 }

@@ -139,13 +139,13 @@ namespace Hungsum.Framework.App
 
         protected virtual IUcLoginPage getLoginPage()
         {
-            return new UcLoginPage();
+            return new Panel_Login();
 
         }
 
-        protected virtual UcMainPage getMainPage(XElement xMenus)
+        protected virtual Panel_Main getMainPage(XElement xMenus)
         {
-            return new UcMainPage(xMenus);
+            return new Panel_Main(xMenus);
         }
 
     }

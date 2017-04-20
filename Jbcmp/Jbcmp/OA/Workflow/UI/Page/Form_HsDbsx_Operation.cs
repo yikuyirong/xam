@@ -1,4 +1,5 @@
-﻿using Hungsum.Framework.Models;
+﻿using Hungsum.Framework.Events;
+using Hungsum.Framework.Models;
 using Hungsum.Framework.UI.Views;
 using Hungsum.OA.Utilities;
 
@@ -28,7 +29,7 @@ namespace Hungsum.OA.Workflow.UI.Page
                 Flag = UcDateInput.NOW
             };
 
-            this.ucUserSwitcher = new UcCheckedInput("0,待审批;1,审批同意;2,审批驳回", "0")
+            this.ucUserSwitcher = new UcCheckedInput("0,待审批;1,审批同意;2,审批驳回", "0", true)
             {
                 CName = "记录状态",
                 AllowEmpty = false,
@@ -84,24 +85,10 @@ namespace Hungsum.OA.Workflow.UI.Page
         }
 
 
-        //protected async override void modifyItem(HsLabelValue item)
-        //{
-        //    try
-        //    {
-        //        Panel_Sdrdkh panel = new Panel_Sdrdkh(item);
-
-        //        panel.UpdateComplete += new EventHandler((sender, e) =>
-        //        {
-        //            this.callRetrieve(false);
-        //        });
-
-        //        await Navigation.PushAsync(panel);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ShowError(ex.Message);
-        //    }
-        //}
+        protected override async Task modifyItem(HsLabelValue item)
+        {
+            await this.callAction(SysActionKeys.UserDo1, item);
+        }
 
         protected override async Task<string> doDataItem(HsActionKey actionKey, HsLabelValue item)
         {
@@ -119,7 +106,7 @@ namespace Hungsum.OA.Workflow.UI.Page
         {
             if (actionKey == SysActionKeys.UserDo1) //查看原始单据
             {
-                this.onOpenDJ(item);
+                this.onOpenDJ(item, true);
             }
             else if (actionKey == SysActionKeys.UserDo2) //查看流程步骤
             {
@@ -128,7 +115,7 @@ namespace Hungsum.OA.Workflow.UI.Page
             else if (actionKey == SysActionKeys.UserDo3) //审批
             {
                 Panel_HsLcspjl panel = new Panel_HsLcspjl(item);
-                panel.UpdateComplete += new EventHandler(async (sender, e) =>
+                panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
                 {
                     try
                     {

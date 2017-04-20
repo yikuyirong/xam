@@ -66,25 +66,26 @@
     <Compile Include="Framework\UI\Pages\IUcLoginPage.cs" />
     <Compile Include="Framework\UI\Pages\IUcMainPage.cs" />
     <Compile Include="Framework\UI\Pages\IUcPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcChangePasswordPage.cs" />
+    <Compile Include="Framework\UI\Pages\Panel_ChangePassword.cs" />
+    <Compile Include="Framework\UI\Pages\Panel_DJDetail.cs" />
     <Compile Include="Framework\UI\Pages\UcPopupPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcNormalPopupPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcBrowseImagesPage.cs" />
+    <Compile Include="Framework\UI\Pages\Popup_Base.cs" />
+    <Compile Include="Framework\UI\Pages\Panel_BrowseImages.cs" />
     <Compile Include="Framework\UI\Pages\UcCarouselPage.cs" />
     <Compile Include="Framework\UI\Pages\UcContentPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcDJAnnexListPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcDJDetailPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcDJListPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcDJPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcFileDetailPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcHelpPopupPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcImageDetailPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcListPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcLoginPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcMainPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcQueryConditionPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcQueryResultPage.cs" />
-    <Compile Include="Framework\UI\Pages\UcZDPage.cs" />
+    <Compile Include="Framework\UI\Pages\UcDetailPage_Annex.cs" />
+    <Compile Include="Framework\UI\Pages\UcDetailPage_Item.cs" />
+    <Compile Include="Framework\UI\Pages\Form_DJ.cs" />
+    <Compile Include="Framework\UI\Pages\Panel_DJ.cs" />
+    <Compile Include="Framework\UI\Pages\UcDetailPage_File.cs" />
+    <Compile Include="Framework\UI\Pages\Popup_Help.cs" />
+    <Compile Include="Framework\UI\Pages\UcDetailPage_Image.cs" />
+    <Compile Include="Framework\UI\Pages\Form_Base.cs" />
+    <Compile Include="Framework\UI\Pages\Panel_Login.cs" />
+    <Compile Include="Framework\UI\Pages\Panel_Main.cs" />
+    <Compile Include="Framework\UI\Pages\Panel_QueryCondition.cs" />
+    <Compile Include="Framework\UI\Pages\Form_QueryResult.cs" />
+    <Compile Include="Framework\UI\Pages\Panel_ZD.cs" />
     <Compile Include="Framework\UI\Views\ControlType.cs" />
     <Compile Include="Framework\UI\Views\IControlValue.cs" />
     <Compile Include="Framework\UI\Views\UcAutoCompleteInput.cs" />
@@ -223,6 +224,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

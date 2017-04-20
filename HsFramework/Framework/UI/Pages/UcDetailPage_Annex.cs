@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public abstract class UcDJAnnexListPage<T> : UcContentPage, IControlValue, IUcDJAnnexPage where T : class
+    public abstract class UcDetailPage_Annex<T> : UcContentPage, IControlValue, IUcDJAnnexPage where T : class
     {
         protected bool hasRrtrieve = false;
 
@@ -33,7 +33,7 @@ namespace Hungsum.Framework.UI.Pages
 
         protected ObservableCollection<T> datas = new ObservableCollection<T>();
 
-        public UcDJAnnexListPage(string title)
+        public UcDetailPage_Annex(string title)
         {
             this.AllowEdit = true;
             this.AllowEmpty = true;

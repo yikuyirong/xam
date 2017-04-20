@@ -17,11 +17,11 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public class UcHelpPopupPage : UcPopupPage<object>
+    public class Popup_Help : UcPopupPage<object>
     {
         protected StackLayout mainLayout;
 
-        public UcHelpPopupPage()
+        public Popup_Help()
         {
             Animation = new MoveAnimation(MoveAnimationOptions.Right, MoveAnimationOptions.Right);
 

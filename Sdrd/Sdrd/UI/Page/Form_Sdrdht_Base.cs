@@ -5,7 +5,7 @@ using System;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-    public abstract class Form_Sdrdht_Base : UcDJListPage
+    public abstract class Form_Sdrdht_Base : Form_DJ
     {
         public Form_Sdrdht_Base()
         {

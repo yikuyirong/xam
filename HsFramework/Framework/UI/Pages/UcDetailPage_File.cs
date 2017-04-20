@@ -15,9 +15,9 @@ using System.Diagnostics;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public class UcFileDetailPage : UcDJAnnexListPage<HsFile>
+    public class UcDetailPage_File : UcDetailPage_Annex<HsFile>
     {
-        public UcFileDetailPage(string title) : base(title)
+        public UcDetailPage_File(string title) : base(title)
         {
             this.liveview.RowHeight = 60;
         }

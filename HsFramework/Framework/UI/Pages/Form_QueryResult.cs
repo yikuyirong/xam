@@ -10,11 +10,11 @@ using Hungsum.Framework.UI.Cells;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public sealed class UcQueryResultPage : UcListPage
+    public sealed class Form_QueryResult : Form_Base
     {
         private List<HsLabelValue> _items;
 
-        public UcQueryResultPage(List<HsLabelValue> items) : base()
+        public Form_QueryResult(List<HsLabelValue> items) : base()
         {
             _items = items;
 
@@ -38,7 +38,7 @@ namespace Hungsum.Framework.UI.Pages
 
                 if (lv != null && lv.Items.Count > 0)
                 {
-                    UcQueryResultPage page = new UcQueryResultPage(lv.Items);
+                    Form_QueryResult page = new Form_QueryResult(lv.Items);
 
                     await Navigation.PushAsync(page);
                 }

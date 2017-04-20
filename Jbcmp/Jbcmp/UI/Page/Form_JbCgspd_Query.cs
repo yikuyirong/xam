@@ -16,17 +16,9 @@ namespace Hungsum.Jbcmp.UI.Page
 {
     public class Form_JbCgspd_Query : Form_JbCgspd_Base
     {
-
-        protected override IList<MenuItem> onCreateContextMenuItems(HsLabelValue item)
+        public Form_JbCgspd_Query()
         {
-            //删除流程操作选项
-            IList<MenuItem> items = base.onCreateContextMenuItems(item);
-
-            items.Remove(items.FirstOrDefault(r => r.GetActionKey() == HsOAActionKeys.发起自由流程));
-            items.Remove(items.FirstOrDefault(r => r.GetActionKey() == HsOAActionKeys.发起规则流程));
-            items.Remove(items.FirstOrDefault(r => r.GetActionKey() == HsOAActionKeys.终止流程));
-
-            return items;
+            this.AuditOnly = true;
         }
 
         protected override async Task<List<HsLabelValue>> retrieve()

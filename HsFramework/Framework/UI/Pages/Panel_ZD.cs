@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public abstract class UcZDPage : UcCarouselPage
+    public abstract class Panel_ZD : UcCarouselPage
     {
         protected List<IControlValue> controls = new List<IControlValue>();
 
@@ -20,7 +20,7 @@ namespace Hungsum.Framework.UI.Pages
         protected ToolbarItem enterToolbarItem;
 
 
-        public UcZDPage() : base()
+        public Panel_ZD() : base()
         {
 
         }
