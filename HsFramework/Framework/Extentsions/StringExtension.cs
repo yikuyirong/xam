@@ -130,5 +130,35 @@ namespace Hungsum.Framework.Extentsions
 
             return items;
         }
+
+        public static int CompareVersion(this string version1,string version2)
+        {
+            string[] v1 = version1.Split('.');
+            string[] v2 = version2.Split('.');
+
+            int result = 0;
+
+            for (int i = 0; i < Math.Max(v1.Length,v2.Length); i++)
+            {
+                if (v1.Length <= i)
+                {
+                    return -1;
+                }
+
+                if (v2.Length <= i)
+                {
+                    return 1;
+                }
+
+                result = v1[i].CompareTo(v2[i]);
+
+                if (result != 0)
+                {
+                    return result;
+                }
+            }
+
+            return result;
+        }
     }
 }

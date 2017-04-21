@@ -32,5 +32,9 @@ namespace Hungsum.Framework.Models
 
         Task<long> DirectoryDelete(params string[] paths);
 
+        string GetApplicationVersion();
+
+        void OpenURL(string url);
+
     }
 }

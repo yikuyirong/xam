@@ -21,6 +21,20 @@ namespace Hungsum.Framework.App
         {
             this.Title = title;
 
+            #region 打开环境界面检查更新
+
+            Panel_Welcome_Base p_welcome = getWelcomePage();
+
+            p_welcome.UpgradeComplete += welcomeUpgradeComplete;
+
+            MainPage = p_welcome;
+
+            #endregion
+
+        }
+
+        private void welcomeUpgradeComplete(object sender, EventArgs e)
+        {
             #region 首次登录时的LoginPage
 
             IUcLoginPage loginpage = getLoginPage();
@@ -33,9 +47,9 @@ namespace Hungsum.Framework.App
 
             _nvPage.BackgroundColor = Color.Blue;
 
-            _nvPage.Pushed += new EventHandler<NavigationEventArgs>((sender, e) =>
+            _nvPage.Pushed += new EventHandler<NavigationEventArgs>((sender2, e2) =>
             {
-                IUcPage p = e.Page as IUcPage;
+                IUcPage p = e2.Page as IUcPage;
 
                 if (p != null)
                 {
@@ -43,17 +57,15 @@ namespace Hungsum.Framework.App
                 }
             });
 
-            _nvPage.Popped += new EventHandler<NavigationEventArgs>((sender, e) =>
+            _nvPage.Popped += new EventHandler<NavigationEventArgs>((sender2, e2) =>
             {
-                IUcPage p = e.Page as IUcPage;
+                IUcPage p = e2.Page as IUcPage;
 
                 if (p != null)
                 {
                     p.OnPoped();
                 }
             });
-
-            //this._ucMainPageLogoutEventHandler(null, null);
 
             MainPage = _nvPage;
         }
@@ -147,6 +159,8 @@ namespace Hungsum.Framework.App
         {
             return new Panel_Main(xMenus);
         }
+
+        protected abstract Panel_Welcome_Base getWelcomePage();
 
     }
 }

@@ -117,7 +117,7 @@ namespace Hungsum.Framework.UI.Pages
             this.itemsContent.Children.Add(control);
         }
 
-        protected void validate()
+        protected virtual void validate()
         {
             foreach (IControlValue control in controls)
             {

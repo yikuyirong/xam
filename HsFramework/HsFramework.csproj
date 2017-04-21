@@ -52,6 +52,7 @@
     <Compile Include="Framework\Models\HsFile.cs" />
     <Compile Include="Framework\Models\HsImage.cs" />
     <Compile Include="Framework\Models\HsLabelValue.cs" />
+    <Compile Include="Framework\Models\HsVersion.cs" />
     <Compile Include="Framework\Models\IHsLabelValue.cs" />
     <Compile Include="Framework\Models\IPlatformExtension.cs" />
     <Compile Include="Framework\Models\LoginData.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Framework\UI\Pages\IUcPage.cs" />
     <Compile Include="Framework\UI\Pages\Panel_ChangePassword.cs" />
     <Compile Include="Framework\UI\Pages\Panel_DJDetail.cs" />
+    <Compile Include="Framework\UI\Pages\Panel_Welcome_Base.cs" />
     <Compile Include="Framework\UI\Pages\UcPopupPage.cs" />
     <Compile Include="Framework\UI\Pages\Popup_Base.cs" />
     <Compile Include="Framework\UI\Pages\Panel_BrowseImages.cs" />
@@ -224,7 +226,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

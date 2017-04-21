@@ -25,6 +25,7 @@ namespace Hungsum.iOS
 
         public Tuple<System.Drawing.Size, byte[]> ReduceImage(byte[] datas, int maxWidth)
         {
+
             UIImage originalImage = ImageFromByteArray(datas);
 
             //原图比较小，不用缩小
@@ -246,6 +247,18 @@ namespace Hungsum.iOS
 
         #endregion
 
+        public string GetApplicationVersion()
+        {
+            return NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString();
+        }
 
+        /// <summary>
+        /// 调用Safari打开URL
+        /// </summary>
+        /// <param name="url"></param>
+        public void OpenURL(string url)
+        {
+            UIApplication.SharedApplication.OpenUrl(new NSUrl(url));
+        }
     }
 }

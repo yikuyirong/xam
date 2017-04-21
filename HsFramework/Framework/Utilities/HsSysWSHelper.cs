@@ -13,6 +13,17 @@ namespace Hungsum.Framework.Utilities
 {
     public abstract class SysWSUtil : HsCoreWSHelper
     {
+        #region Upgrade
+
+        public async Task<string> GetIOSClientInfo()
+        {
+            string data = await postByName("GetIOSClientInfo", "");
+
+            return data;
+        }
+
+        #endregion
+
         #region GetDBs
 
         public async Task<string> GetDbs()
@@ -59,7 +70,7 @@ namespace Hungsum.Framework.Utilities
 
         #region Password
 
-        public async Task ChangePassword(string progressId,string oldpassword,string newpassword)
+        public async Task ChangePassword(string progressId, string oldpassword, string newpassword)
         {
             XElement xData = new XElement("Data",
                 new XElement("ProgressId", progressId),

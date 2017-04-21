@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 
 using Hungsum.Jbcmp;
+using Hungsum.iOS;
 
 namespace Jbcmp.iOS
 {
@@ -29,7 +30,7 @@ namespace Jbcmp.iOS
 
             global::Xamarin.Forms.Forms.Init();
 
-            global::Xamarin.Forms.DependencyService.Register<Hungsum.iOS.IOSPlatformExtension>();
+            global::Xamarin.Forms.DependencyService.Register<IOSPlatformExtension>();
 
             FormsPlugin.Iconize.iOS.IconControls.Init();
 

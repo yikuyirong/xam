@@ -68,5 +68,81 @@ namespace Hungsum.Jbcmp.Utilities
         }
 
         #endregion
+
+        #region 合同评审表
+
+        public async Task<string> UpdateJbHtpsb(string progressId, string djId, string qrdId, string djrq, string htdw, string htmc, string htbh, string jgly, string jtsp, string fjxm, string htje, string fkfs, string htqx, string zytk, string bz, int flag)
+        {
+            XElement xData = new XElement("Data",
+                new XElement("ProgressId", progressId),
+                new XElement("DjId", djId),
+                new XElement("QrdId", qrdId),
+                new XElement("Djrq", djrq),
+                new XElement("Htdw", htdw),
+                new XElement("Htmc", htmc),
+                new XElement("Htbh", htbh),
+                new XElement("Jgly", jgly),
+                new XElement("Jtsp", jtsp),
+                new XElement("Fjxm", fjxm),
+                new XElement("Htje", htje),
+                new XElement("Fkfs", fkfs),
+                new XElement("Htqx", htqx),
+                new XElement("Zytk", zytk),
+                new XElement("Bz", bz),
+                new XElement("Flag", flag));
+
+            string data = await postByName("UpdateJbHtpsb", HsGZip.CompressString(xData.ToString(SaveOptions.DisableFormatting)));
+
+            return data;
+        }
+
+        public async Task<HsLabelValue> GetJbHtpsb(string progressId, string djId)
+        {
+            XElement xData = new XElement("Data",
+                                new XElement("ProgressId", progressId),
+                                new XElement("DjId", djId));
+
+            string data = await postByName("GetJbHtpsb", HsGZip.CompressString(xData.ToString(SaveOptions.DisableFormatting)));
+
+            return XElement.Parse(HsGZip.DecompressString(data)).ToHsLabelValue();
+        }
+
+        #endregion
+
+        #region 招标文件评审表
+
+        public async Task<string> UpdateJbZbwjpsb(string progressId, string djId, string djrq, string xmmc, string wjbh, string jtsp, string ysje, string fjxm, string sfjg, string jgsm, string qtsm, string bz, int flag)
+        {
+            XElement xData = new XElement("Data",
+                new XElement("ProgressId", progressId),
+                new XElement("DjId", djId),
+                new XElement("Djrq", djrq),
+                new XElement("Xmmc", xmmc),
+                new XElement("Wjbh", wjbh),
+                new XElement("Jtsp", jtsp),
+                new XElement("Ysje", ysje),
+                new XElement("Fjxm", fjxm),
+                new XElement("Sfjg", sfjg),
+                new XElement("Jgsm", jgsm),
+                new XElement("Qtsm", qtsm),
+                new XElement("Bz", bz),
+                new XElement("Flag", flag));
+
+            string data = await postByName("UpdateJbZbwjpsb", HsGZip.CompressString(xData.ToString(SaveOptions.DisableFormatting)));
+
+            return data;
+        }
+
+        public async Task<HsLabelValue> GetJbZbwjpsb(string progressId, string djId)
+        {
+            XElement xData = new XElement("Data",
+                                new XElement("ProgressId", progressId),
+                                new XElement("DjId", djId));
+
+            string data = await postByName("GetJbZbwjpsb", HsGZip.CompressString(xData.ToString(SaveOptions.DisableFormatting)));
+
+            return XElement.Parse(HsGZip.DecompressString(data)).ToHsLabelValue();
+        }
+        #endregion
     }
 }

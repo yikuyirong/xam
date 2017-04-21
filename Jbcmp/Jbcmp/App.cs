@@ -24,7 +24,12 @@ namespace Hungsum.Jbcmp
 
         protected override Panel_Main getMainPage(XElement xMenus)
         {
-            return new Form_JbcmpMain(xMenus);
+            return new Panel_JbcmpMain(xMenus);
+        }
+
+        protected override Panel_Welcome_Base getWelcomePage()
+        {
+            return new Panel_Welcome();
         }
 
         protected override void OnStart()

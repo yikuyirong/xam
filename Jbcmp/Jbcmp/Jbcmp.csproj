@@ -52,9 +52,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Page\Form_JbCgspd_Base.cs" />
     <Compile Include="UI\Page\Form_JbCgspd_Query.cs" />
-    <Compile Include="UI\Page\Form_JbcmpMain.cs" />
+    <Compile Include="UI\Page\Panel_JbcmpMain.cs" />
     <Compile Include="UI\Page\Form_JbCgspd_Operation.cs" />
+    <Compile Include="UI\Page\Panel_JbZbwjpsb.cs" />
+    <Compile Include="UI\Page\Panel_JbHtpsb.cs" />
     <Compile Include="UI\Page\Panel_JbCpspd.cs" />
+    <Compile Include="UI\Page\Panel_Welcome.cs" />
     <Compile Include="Utilities\JbcmpWSUtil.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +98,9 @@
       <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
       <Name>HsFramework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Imgs\background_original.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.231\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.231\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

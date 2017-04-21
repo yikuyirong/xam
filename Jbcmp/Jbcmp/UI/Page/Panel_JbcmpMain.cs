@@ -12,9 +12,9 @@ using Hungsum.Jbcmp.Utilities;
 
 namespace Hungsum.Jbcmp.UI.Page
 {
-    public class Form_JbcmpMain : Form_HsOAMain
+    public class Panel_JbcmpMain : Form_HsOAMain
     {
-        public Form_JbcmpMain(XElement xMenus) : base(xMenus) { }
+        public Panel_JbcmpMain(XElement xMenus) : base(xMenus) { }
 
 
         protected override async Task doAction(IHsLabelValue item)
@@ -41,7 +41,25 @@ namespace Hungsum.Jbcmp.UI.Page
                     {
                         HsLabelValue item = await ((JbcmpWSUtil)GetWSUtil()).GetJbCgspd(GetLoginData().ProgressId, djId);
 
-                        Panel_JbCgspd panel = new Panel_JbCgspd(item) { AuditOnly = auditOnly};
+                        Panel_JbCgspd panel = new Panel_JbCgspd(item) { AuditOnly = auditOnly };
+
+                        await Navigation.PushAsync(panel);
+                    }
+                    break;
+                case JbcmpDjlx.JBHTPSB:
+                    {
+                        HsLabelValue item = await ((JbcmpWSUtil)GetWSUtil()).GetJbHtpsb(GetLoginData().ProgressId, djId);
+
+                        Panel_JbHtpsb panel = new Panel_JbHtpsb(item) { AuditOnly = auditOnly };
+
+                        await Navigation.PushAsync(panel);
+                    }
+                    break;
+                case JbcmpDjlx.JBZBWJPSB:
+                    {
+                        HsLabelValue item = await ((JbcmpWSUtil)GetWSUtil()).GetJbZbwjpsb(GetLoginData().ProgressId, djId);
+
+                        Panel_JbZbwjpsb panel = new Panel_JbZbwjpsb(item) { AuditOnly = auditOnly };
 
                         await Navigation.PushAsync(panel);
                     }
