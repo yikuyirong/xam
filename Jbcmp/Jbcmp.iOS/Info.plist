@@ -18,7 +18,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>10.3</string>
+	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>Jbcmp</string>
 	<key>CFBundleIdentifier</key>
@@ -35,7 +35,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleShortVersionString</key>
-	<string></string>
+	<string>1000</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>iconize-ionicons.ttf</string>
@@ -60,5 +60,7 @@
 	</dict>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackTranslucent</string>
+	<key>CFBundleName</key>
+	<string>Jbcmp</string>
 </dict>
 </plist>
