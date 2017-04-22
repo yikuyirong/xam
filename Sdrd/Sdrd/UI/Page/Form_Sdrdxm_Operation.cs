@@ -1,4 +1,5 @@
 ﻿using FormsPlugin.Iconize;
+using Hungsum.Framework.Events;
 using Hungsum.Framework.Models;
 using Hungsum.Framework.UI.Pages;
 using Hungsum.Framework.UI.Views;
@@ -105,7 +106,7 @@ namespace Hungsum.Sdrd.UI.Page
         {
             Panel_Sdrdxm panel = new Panel_Sdrdxm();
 
-            panel.UpdateComplete += new EventHandler(async (sender, e) =>
+            panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
             {
                 try
                 {
@@ -127,7 +128,7 @@ namespace Hungsum.Sdrd.UI.Page
 
             if (item.GetValueByLabel("Xmzt") == "0")
             {
-                panel.UpdateComplete += new EventHandler(async (sender, e) =>
+                panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
                 {
                     try
                     {

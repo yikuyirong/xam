@@ -1,4 +1,5 @@
 ﻿using FormsPlugin.Iconize;
+using Hungsum.Framework.Events;
 using Hungsum.Framework.Models;
 using Hungsum.Framework.UI.Pages;
 using Hungsum.Sdrd.Utilities;
@@ -62,43 +63,43 @@ namespace Hungsum.Sdrd.UI.Page
             return await ((SdrdWSUtil)GetWSUtil()).ShowLxrs(GetLoginData().ProgressId, khId);
         }
 
-        protected override async void addItem()
+        protected override async Task addItem()
         {
-            try
-            {
-                Panel_Sdrdlxr panel = new Panel_Sdrdlxr(this._kh);
+            Panel_Sdrdlxr panel = new Panel_Sdrdlxr(this._kh);
 
-                panel.UpdateComplete += new EventHandler((sender, e) =>
-                {
-                    this.callRetrieve(false);
-                });
+            panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
+           {
+               try
+               {
+                   await this.callRetrieve(false);
+               }
+               catch (Exception ex)
+               {
+                   this.ShowError(ex.Message);
+               }
+           });
 
-                await Navigation.PushAsync(panel);
-            }
-            catch (Exception ex)
-            {
-                this.ShowError(ex.Message);
-            }
+            await Navigation.PushAsync(panel);
         }
 
 
-        protected async override void modifyItem(HsLabelValue item)
+        protected override async Task modifyItem(HsLabelValue item)
         {
-            try
-            {
-                Panel_Sdrdlxr panel = new Panel_Sdrdlxr(this._kh, item);
+            Panel_Sdrdlxr panel = new Panel_Sdrdlxr(this._kh, item);
 
-                panel.UpdateComplete += new EventHandler((sender, e) =>
+            panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
+            {
+                try
                 {
-                    this.callRetrieve(false);
-                });
+                    await this.callRetrieve(false);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowError(ex.Message);
+                }
+            });
 
-                await Navigation.PushAsync(panel);
-            }
-            catch (Exception ex)
-            {
-                this.ShowError(ex.Message);
-            }
+            await Navigation.PushAsync(panel);
         }
 
         protected override async Task<string> doDataItem(HsActionKey actionKey, HsLabelValue item)

@@ -25,6 +25,13 @@ namespace Hungsum.Sdrd
 
         }
 
+        protected override Panel_Welcome_Base getWelcomePage()
+        {
+            ImageSource source = ImageSource.FromResource("Hungsum.Sdrd.Assets.Imgs.sdrd_welcome.png");
+
+            return new Panel_Welcome_Base(source);
+        }
+
         protected override Panel_Main getMainPage(XElement xMenus)
         {
             return new Form_SdrdMain(xMenus);

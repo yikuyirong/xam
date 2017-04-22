@@ -1,4 +1,5 @@
 ﻿using FormsPlugin.Iconize;
+using Hungsum.Framework.Events;
 using Hungsum.Framework.Models;
 using Hungsum.Framework.UI.Pages;
 using Hungsum.Sdrd.Utilities;
@@ -64,15 +65,22 @@ namespace Hungsum.Sdrd.UI.Page
             return await ((SdrdWSUtil)GetWSUtil()).ShowKhs(GetLoginData().ProgressId);
         }
 
-        protected override async void addItem()
+        protected override async Task addItem()
         {
             try
             {
                 Panel_Sdrdkh panel = new Panel_Sdrdkh();
 
-                panel.UpdateComplete += new EventHandler((sender, e) =>
+                panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
                 {
-                    this.callRetrieve(false);
+                    try
+                    {
+                        await this.callRetrieve(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ShowError(ex.Message);
+                    }
                 });
 
                 await Navigation.PushAsync(panel);
@@ -84,23 +92,23 @@ namespace Hungsum.Sdrd.UI.Page
         }
 
 
-        protected async override void modifyItem(HsLabelValue item)
+        protected async override Task modifyItem(HsLabelValue item)
         {
-            try
-            {
-                Panel_Sdrdkh panel = new Panel_Sdrdkh(item);
+            Panel_Sdrdkh panel = new Panel_Sdrdkh(item);
 
-                panel.UpdateComplete += new EventHandler((sender, e) =>
+            panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
+            {
+                try
                 {
-                    this.callRetrieve(false);
-                });
+                    await this.callRetrieve(false);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowError(ex.Message);
+                }
+            });
 
-                await Navigation.PushAsync(panel);
-            }
-            catch (Exception ex)
-            {
-                this.ShowError(ex.Message);
-            }
+            await Navigation.PushAsync(panel);
         }
 
         protected override async Task<string> doDataItem(HsActionKey actionKey,HsLabelValue item)
@@ -114,23 +122,16 @@ namespace Hungsum.Sdrd.UI.Page
             }
         }
 
-        protected override async void callAction(HsActionKey actionKey, HsLabelValue item)
+        protected override async Task callAction(HsActionKey actionKey, HsLabelValue item)
         {
-            try
+            if (actionKey == SysActionKeys.UserDo1)
             {
-                if (actionKey == SysActionKeys.UserDo1)
-                {
-                    await Navigation.PushAsync(new Form_Sdrdlxr_Operation(item));
-                } else
-                {
-                    base.callAction(actionKey, item);
-                }
+                await Navigation.PushAsync(new Form_Sdrdlxr_Operation(item));
             }
-            catch (Exception e)
+            else
             {
-                this.ShowError(e.Message);
+                await base.callAction(actionKey, item);
             }
-
         }
 
     }

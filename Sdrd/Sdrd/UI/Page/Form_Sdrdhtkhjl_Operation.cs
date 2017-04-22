@@ -1,4 +1,5 @@
 ﻿using FormsPlugin.Iconize;
+using Hungsum.Framework.Events;
 using Hungsum.Framework.Models;
 using Hungsum.Framework.UI.Views;
 using Hungsum.Sdrd.Utilities;
@@ -95,50 +96,50 @@ namespace Hungsum.Sdrd.UI.Page
                 this.ucUserSwitcher.ControlValue);
         }
 
-        protected override async void addItem()
+        protected override async Task addItem()
         {
-            try
-            {
-                Panel_Sdrdhthkjl panel = new Panel_Sdrdhthkjl();
+            Panel_Sdrdhthkjl panel = new Panel_Sdrdhthkjl();
 
-                panel.UpdateComplete += new EventHandler((sender, e) =>
+            panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
+            {
+                try
                 {
-                    this.callRetrieve(false);
-                });
+                    await this.callRetrieve(false);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowError(ex.Message);
+                }
+            });
 
-                await Navigation.PushAsync(panel);
-            }
-            catch (Exception ex)
-            {
-                this.ShowError(ex.Message);
-            }
+            await Navigation.PushAsync(panel);
         }
 
 
-        protected async override void modifyItem(HsLabelValue item)
+        protected async override Task modifyItem(HsLabelValue item)
         {
-            try
-            {
-                Panel_Sdrdhthkjl panel = new Panel_Sdrdhthkjl(item);
+            Panel_Sdrdhthkjl panel = new Panel_Sdrdhthkjl(item);
 
-                if (item.GetValueByLabel("Jlzt") == "0")
+            if (item.GetValueByLabel("Jlzt") == "0")
+            {
+                panel.UpdateComplete += new EventHandler<HsEventArgs<object>>(async (sender, e) =>
                 {
-                    panel.UpdateComplete += new EventHandler((sender, e) =>
+                    try
                     {
-                        this.callRetrieve(false);
-                    });
-                }
-                else
-                {
-                    panel.AuditOnly = true;
-                }
-
-                await Navigation.PushAsync(panel);
+                        await this.callRetrieve(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ShowError(ex.Message);
+                    }
+                });
             }
-            catch (Exception ex)
+            else
             {
-                this.ShowError(ex.Message);
+                panel.AuditOnly = true;
             }
+
+            await Navigation.PushAsync(panel);
         }
 
         protected override async Task<string> doDataItem(HsActionKey actionKey, HsLabelValue item)

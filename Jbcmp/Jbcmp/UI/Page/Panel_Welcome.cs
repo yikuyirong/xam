@@ -16,11 +16,5 @@ namespace Hungsum.Jbcmp.UI.Page
             return ImageSource.FromResource("Hungsum.Jbcmp.Assets.Imgs.background_original.png");
         }
 
-        protected override async Task<string> getLastestIPAInfo()
-        {
-            string result = await GetWSUtil().GetIOSClientInfo();
-
-            return result;
-        }
     }
 }

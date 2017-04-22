@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Hungsum.Framework.UI.Pages
 {
-    public abstract class Panel_Welcome_Base : UcContentPage
+    public class Panel_Welcome_Base : UcContentPage
     {
         public event EventHandler UpgradeComplete;
 
@@ -18,16 +18,27 @@ namespace Hungsum.Framework.UI.Pages
             this.UpgradeComplete?.Invoke(this, null);
         }
 
-        public Panel_Welcome_Base()
+        public Panel_Welcome_Base(ImageSource source = null)
         {
             Image image = new Image() { Aspect = Aspect.AspectFill };
 
-            image.Source = getImageSource();
+            if (source != null)
+            {
+                image.Source = source;
+            }
+
+            if (getImageSource() != null)
+            {
+                image.Source = getImageSource();
+            }
 
             Content = image;
         }
 
-        protected abstract ImageSource getImageSource();
+        protected virtual ImageSource getImageSource()
+        {
+            return null;
+        }
 
         protected override async void onInit()
         {
@@ -82,6 +93,12 @@ namespace Hungsum.Framework.UI.Pages
             }
         }
 
-        protected abstract Task<string> getLastestIPAInfo();
+        protected virtual async Task<string> getLastestIPAInfo()
+        {
+            string result = await GetWSUtil().GetIOSClientInfo();
+
+            return result;
+        }
+
     }
 }

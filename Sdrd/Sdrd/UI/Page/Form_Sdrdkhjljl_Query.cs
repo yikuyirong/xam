@@ -28,16 +28,9 @@ namespace Hungsum.Sdrd.UI.Page
                 this.ucEndDate.ControlValue);
         }
 
-        protected override async void modifyItem(HsLabelValue item)
+        protected override async Task modifyItem(HsLabelValue item)
         {
-            try
-            {
-                await Navigation.PushAsync(new Panel_Sdrdkhjljl(item) { AuditOnly = true });
-            }
-            catch (Exception ex)
-            {
-                this.ShowError(ex.Message);
-            }
+            await Navigation.PushAsync(new Panel_Sdrdkhjljl(item) { AuditOnly = true });
         }
 
     }

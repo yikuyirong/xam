@@ -2,6 +2,7 @@
 using Hungsum.Framework.UI.Pages;
 using Hungsum.Framework.UI.Views;
 using System;
+using System.Threading.Tasks;
 
 namespace Hungsum.Sdrd.UI.Page
 {
@@ -27,10 +28,7 @@ namespace Hungsum.Sdrd.UI.Page
 
         }
 
-        protected override void addItem() { }
-
-
-        protected override async void callAction(HsActionKey actionKey, HsLabelValue item)
+        protected override async Task callAction(HsActionKey actionKey, HsLabelValue item)
         {
             try
             {
@@ -40,7 +38,7 @@ namespace Hungsum.Sdrd.UI.Page
                 }
                 else
                 {
-                    base.callAction(actionKey, item);
+                    await base.callAction(actionKey, item);
                 }
             }
             catch (Exception e)

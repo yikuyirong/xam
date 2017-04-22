@@ -29,16 +29,9 @@ namespace Hungsum.Sdrd.UI.Page
                 this.ucUserSwitcher.ControlValue);
         }
 
-        protected async override void modifyItem(HsLabelValue item)
+        protected override async Task modifyItem(HsLabelValue item)
         {
-            try
-            {
-                await Navigation.PushAsync(new Panel_Sdrdhthkjl(item) { AuditOnly = true});
-            }
-            catch (Exception ex)
-            {
-                this.ShowError(ex.Message);
-            }
+            await Navigation.PushAsync(new Panel_Sdrdhthkjl(item) { AuditOnly = true });
         }
 
     }
