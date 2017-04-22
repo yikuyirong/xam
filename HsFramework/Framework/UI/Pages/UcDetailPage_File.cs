@@ -89,13 +89,6 @@ namespace Hungsum.Framework.UI.Pages
 
                 }
 
-
-                //using (MemoryStream ms = new MemoryStream())
-                //{
-
-                //    await pe.WriteFile(cachefilename, ms.ToArray(), 2, cachePath);
-                //}
-
                 await downloadAndOpen(item);
             }
             else
@@ -189,6 +182,18 @@ namespace Hungsum.Framework.UI.Pages
         public override string ControlType => Views.ControlType.FileBean;
 
         #endregion
+
+        public override bool CanExecute(object parameter)
+        {
+            if ((parameter as HsCommandParams)?.ActionKey == SysActionKeys.UserDo1)
+            {
+                return true;
+            }
+            else
+            {
+                return base.CanExecute(parameter);
+            }
+        }
 
     }
 }
