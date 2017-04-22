@@ -16,21 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="background_original.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                            </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="54" animating="YES" fixedFrame="YES">
                                 <rect key="frame" x="-59" y="-284" width="37" height="37"/>
                             </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="80" translatesAutoresizingMaskIntoConstraints="NO" image="background_original.png">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                         <color key="tintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                         <constraints>
-                            <constraint id="73" firstItem="23" firstAttribute="top" secondItem="Y8P-hJ-Z43" secondAttribute="bottom"/>
-                            <constraint id="74" firstItem="yd7-JS-zBw" firstAttribute="trailing" secondItem="23" secondAttribute="trailing"/>
-                            <constraint id="75" firstItem="23" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leading"/>
-                            <constraint id="76" firstItem="9ZL-r4-8FZ" firstAttribute="top" secondItem="23" secondAttribute="bottom"/>
+                            <constraint id="81" firstItem="yd7-JS-zBw" firstAttribute="trailing" secondItem="80" secondAttribute="trailing"/>
+                            <constraint id="82" firstItem="80" firstAttribute="top" secondItem="Y8P-hJ-Z43" secondAttribute="bottom"/>
+                            <constraint id="83" firstItem="80" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leading"/>
+                            <constraint id="84" firstItem="9ZL-r4-8FZ" firstAttribute="top" secondItem="80" secondAttribute="bottom"/>
                         </constraints>
                     </view>
                 </viewController>
