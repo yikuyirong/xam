@@ -38,7 +38,7 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app needs access to microphone.</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2017.4.11.1</string>
+	<string>2017.4.22.1</string>
 	<key>UIPrerenderedIcon</key>
 	<false/>
 	<key>UILaunchStoryboardName</key>
@@ -52,5 +52,7 @@
 	<array>
 		<string>iconize-ionicons.ttf</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>山东热电</string>
 </dict>
 </plist>
