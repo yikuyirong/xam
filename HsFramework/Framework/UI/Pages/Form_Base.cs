@@ -52,7 +52,6 @@ namespace Hungsum.Framework.UI.Pages
                     this.ShowError(ex.Message);
                 }
             });
-
             mainLayout = new StackLayout() { Spacing = 0 };
 
             mainLayout.Children.Add(lv);
