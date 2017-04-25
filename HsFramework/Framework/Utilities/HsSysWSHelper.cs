@@ -19,6 +19,8 @@ namespace Hungsum.Framework.Utilities
         {
             string data = await postByName("GetIOSClientInfo", "");
 
+            data = HsGZip.DecompressString(data);
+
             return data;
         }
 

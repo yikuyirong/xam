@@ -6,12 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Xml.Linq;
 
 namespace Hungsum.Framework.UI.Pages
 {
     public class Panel_Welcome_Base : UcContentPage
     {
         public event EventHandler UpgradeComplete;
+
+        private bool allowCheck = false;
 
         protected void onUpgradeComplete()
         {
@@ -20,7 +23,17 @@ namespace Hungsum.Framework.UI.Pages
 
         public Panel_Welcome_Base(ImageSource source = null)
         {
+            AbsoluteLayout rootLayout = new AbsoluteLayout()
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand
+            };
+
+
+            //底图
             Image image = new Image() { Aspect = Aspect.AspectFill };
+            AbsoluteLayout.SetLayoutBounds(image, new Rectangle(0, 0, 1, 1));
+            AbsoluteLayout.SetLayoutFlags(image, AbsoluteLayoutFlags.All);
 
             if (source != null)
             {
@@ -32,7 +45,27 @@ namespace Hungsum.Framework.UI.Pages
                 image.Source = getImageSource();
             }
 
-            Content = image;
+            rootLayout.Children.Add(image);
+
+            //上层按钮
+            StackLayout controlLayout = new StackLayout();
+            AbsoluteLayout.SetLayoutBounds(controlLayout, new Rectangle(0, 0, 1, 1));
+            AbsoluteLayout.SetLayoutFlags(controlLayout, AbsoluteLayoutFlags.All);
+
+            Button button = new Button()
+            {
+                Text = "检查更新",
+                Command = this,
+                CommandParameter = new HsCommandParams(SysActionKeys.UserDo1),
+                HorizontalOptions = LayoutOptions.End,
+                VerticalOptions = LayoutOptions.End
+            };
+
+            controlLayout.Children.Add(button);
+
+            rootLayout.Children.Add(controlLayout);
+
+            Content = rootLayout;
         }
 
         protected virtual ImageSource getImageSource()
@@ -40,39 +73,44 @@ namespace Hungsum.Framework.UI.Pages
             return null;
         }
 
-        protected override async void onInit()
+        protected override void onInit()
         {
             base.onInit();
 
+            this._checkIsUpgrade();
+
+        }
+
+        protected async void _checkIsUpgrade()
+        {
             try
             {
                 //获取新版本
-                string info = await getLastestIPAInfo();
-
-                //第一位表示版本号，第二位表示URL
-                string[] infos = info.Split(';');
+                HsLabelValue item = await getLastestIPAInfo();
 
                 //取版本号
-                HsVersion version = HsVersion.Parse(infos[0]);
+                HsVersion version = HsVersion.Parse(item.GetValueByLabel("Version"));
 
-                string url = infos[1];
+                string upgradeUri = item.GetValueByLabel("UpgradeURI");
 
                 //检查版本最后一位，如果是奇数表明是一般更新，偶数表明是强制更新
                 IPlatformExtension pe = DependencyService.Get<IPlatformExtension>();
 
-                if (pe != null && version > HsVersion.Parse(pe.GetApplicationVersion())) //存在新版本
+                HsVersion currentVersion = HsVersion.Parse(pe.GetApplicationVersion());
+
+                if (pe != null && version > currentVersion) //存在新版本
                 {
                     if (version.Type == HsVersion.EType.Force)
                     {
-                        await this.DisplayAlert("发现新版本，请立即更新", "", "确定");
+                        await this.DisplayAlert($"发现新版本 {version}，请立即更新", $"当前版本 {currentVersion}", "确定");
 
-                        pe.OpenURL(url);
+                        pe.OpenURL(upgradeUri);
                     }
                     else
                     {
-                        if (await this.DisplayAlert("发现新版本，是否更新", "", "是", "否"))
+                        if (await this.DisplayAlert($"发现新版本 {version}，是否更新", $"当前版本 {currentVersion}", "是", "否"))
                         {
-                            pe.OpenURL(url);
+                            pe.OpenURL(upgradeUri);
                         }
                         else
                         {
@@ -80,7 +118,8 @@ namespace Hungsum.Framework.UI.Pages
                         }
                     }
 
-                } else
+                }
+                else
                 {
                     this.onUpgradeComplete();
                 }
@@ -93,11 +132,46 @@ namespace Hungsum.Framework.UI.Pages
             }
         }
 
-        protected virtual async Task<string> getLastestIPAInfo()
+        protected virtual async Task<HsLabelValue> getLastestIPAInfo()
         {
             string result = await GetWSUtil().GetIOSClientInfo();
 
-            return result;
+            return XElement.Parse(result).ToHsLabelValue();
+        }
+
+        public override bool CanExecute(object parameter)
+        {
+            return allowCheck;
+        }
+
+        public override void Execute(object parameter)
+        {
+            try
+            {
+                HsCommandParams cp = parameter as HsCommandParams;
+
+                if (cp != null)
+                {
+                    if (cp.ActionKey == SysActionKeys.UserDo1)
+                    {
+                        allowCheck = false;
+
+                        this._checkIsUpgrade();
+                    }
+                }
+                else
+                {
+                    base.Execute(parameter);
+                }
+            }
+            catch (Exception e)
+            {
+                this.ShowError(e.Message);
+            }
+            finally
+            {
+                allowCheck = true;
+            }
         }
 
     }

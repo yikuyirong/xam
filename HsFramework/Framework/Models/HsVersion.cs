@@ -46,6 +46,11 @@ namespace Hungsum.Framework.Models
             }
         }
 
+        public override string ToString()
+        {
+            return _version;
+        }
+
         #region Compare
 
         public static bool operator >(HsVersion x, HsVersion y)
