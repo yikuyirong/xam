@@ -54,6 +54,10 @@ namespace Hungsum.Framework.UI.Pages
 
             mainLayout.Children.Add(new LabelItem($"欢迎，{GetLoginData().Username}", "ion-person", FontAttributes.Bold));
 
+            string version = HsDependencyService<IPlatformExtension>.Instance().GetApplicationVersion();
+
+            mainLayout.Children.Add(new LabelItem($"V{version}", "", FontAttributes.Italic));
+
             #endregion
 
             #region MainInformation
