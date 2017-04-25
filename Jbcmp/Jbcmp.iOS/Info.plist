@@ -34,8 +34,6 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1000</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>iconize-ionicons.ttf</string>
@@ -47,7 +45,7 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app needs access to microphone.</string>
 	<key>CFBundleVersion</key>
-	<string>2017.4.22.1</string>
+	<string>2017.4.25.1</string>
 	<key>UIStatusBarTintParameters</key>
 	<dict>
 		<key>UINavigationBar</key>
