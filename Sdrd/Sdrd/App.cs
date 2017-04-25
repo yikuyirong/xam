@@ -19,8 +19,8 @@ namespace Hungsum.Sdrd
         {
             //本次测试时不要使用127.0.0.1或localhost，会引发connection refused异常。
             //this.WSUtil = new SdrdWSUtil() { URL = "http://192.168.1.104/sdrdwebservice.asmx/" };
-            this.WSUtil = new SdrdWSUtil() { URL = "http://app.hungsum.com/sdrd/sdrdwebservice.asmx/" };
-            //this.WSUtil = new SdrdWSUtil() { URL = "http://124.128.94.194:8088/sdrdwebservice.asmx/" };
+            //this.WSUtil = new SdrdWSUtil() { URL = "http://app.hungsum.com/sdrd/sdrdwebservice.asmx/" };
+            this.WSUtil = new SdrdWSUtil() { URL = "http://124.128.94.194:8088/sdrdwebservice.asmx/" };
 
 
         }
