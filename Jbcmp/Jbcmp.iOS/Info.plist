@@ -44,8 +44,6 @@
 	<string>This app needs access to photos.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app needs access to microphone.</string>
-	<key>CFBundleVersion</key>
-	<string>2017.4.25.1</string>
 	<key>UIStatusBarTintParameters</key>
 	<dict>
 		<key>UINavigationBar</key>
@@ -60,5 +58,9 @@
 	<string>UIStatusBarStyleBlackTranslucent</string>
 	<key>CFBundleName</key>
 	<string>Jbcmp</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2017.4.25.3</string>
+	<key>CFBundleVersion</key>
+	<string>3</string>
 </dict>
 </plist>
