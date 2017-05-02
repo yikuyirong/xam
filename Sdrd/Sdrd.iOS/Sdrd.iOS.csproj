@@ -101,8 +101,8 @@
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <BuildIpa>True</BuildIpa>
-    <CodesignProvision>Sdrd Test 20170422</CodesignProvision>
-    <CodesignKey>iPhone Distribution: Jinan Jiabao Dairy Co.,Ltd.</CodesignKey>
+    <CodesignProvision>p_dev_sdrd</CodesignProvision>
+    <CodesignKey>iPhone Developer: xuan zhai (W94U4MG86H)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 <IpaPackageName>Sdrd</IpaPackageName>
   </PropertyGroup>

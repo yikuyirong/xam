@@ -117,6 +117,8 @@
     <Compile Include="Framework\Utilities\HsZlib.cs" />
     <Compile Include="Framework\Utilities\UcControlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Framework\UI\Pages\Panel_PreviewFile.cs" />
+    <Compile Include="Framework\UI\Views\UcWebView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Framework\Assets\Imgs\icon_1.png" />

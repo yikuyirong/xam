@@ -21,8 +21,6 @@ namespace Hungsum.Sdrd
             //this.WSUtil = new SdrdWSUtil() { URL = "http://192.168.1.104/sdrdwebservice.asmx/" };
             //this.WSUtil = new SdrdWSUtil() { URL = "http://app.hungsum.com/sdrd/sdrdwebservice.asmx/" };
             this.WSUtil = new SdrdWSUtil() { URL = "http://124.128.94.194:8088/sdrdwebservice.asmx/" };
-
-
         }
 
         protected override Panel_Welcome_Base getWelcomePage()

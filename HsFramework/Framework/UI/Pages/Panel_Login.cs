@@ -28,7 +28,25 @@ namespace Hungsum.Framework.UI.Pages
 
         private UcChooseItemBase ucIsSaved;
 
-        public Panel_Login()
+		private bool _hasRetrieveAcount = false;
+
+		protected bool hasRretrieveAccount
+		{
+			get
+			{
+				return _hasRetrieveAcount;
+			}
+			set
+			{
+				_hasRetrieveAcount = value;
+
+				this.enterToolbarItem.Text = value ? "登录" : "获取账套";
+			}
+			
+		}
+
+
+		public Panel_Login()
         {
             //清除现有LoginData
             ((HsApp)Application.Current).LoginData = null;
@@ -39,60 +57,21 @@ namespace Hungsum.Framework.UI.Pages
         {
             base.onInit();
 
-            this.enterToolbarItem.Text = "登录";
+			this.hasRretrieveAccount = false;
 
-            try
+			try
             {
-                string data = await ((HsApp)Application.Current).WSUtil.GetDbs();
-
-                this.ucDb.Datas = data;
-
-                try
-                {
-                    IPlatformExtension pe = DependencyService.Get<IPlatformExtension>(DependencyFetchTarget.GlobalInstance);
-
-                    //读入上次登录配置信息
-                    //string lastData = await HsLocalStorageHelper.ReadAllText(LASTLOGINFILENAME, "");
-                    string lastData = await pe.ReadTextFile(LASTLOGINFILENAME);
-
-                    if (!string.IsNullOrWhiteSpace(lastData))
-                    {
-                        XElement xLastLogin = XElement.Parse(lastData);
-                        this.ucUserName.ControlValue = xLastLogin.GetFirstElementValue("UserName");
-                        this.ucPassword.ControlValue = xLastLogin.GetFirstElementValue("Password");
-                        this.ucDb.ControlValue = xLastLogin.GetFirstElementValue("Account");
-                        this.ucIsSaved.Checked = bool.Parse(xLastLogin.GetFirstElementValue("IsSaved", false.ToString()));
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
-            }
-            catch (Exception e2)
+				await update();
+			}
+			catch (Exception e)
             {
-                this.ShowError(e2.Message);
+                this.ShowError(e.Message);
             }
 
 
         }
 
-
-        //protected override IList<ToolbarItem> onCreateToolbarItems()
-        //{
-        //    IList<ToolbarItem> items = base.onCreateToolbarItems();
-
-        //    ToolbarItem item = items.FirstOrDefault(r => ((HsCommandParams)r.CommandParameter).ActionKey == MenuItemKeys.确定);
-
-        //    if (item != null)
-        //    {
-        //        item.Text = "登录";
-        //    }
-
-        //    return items;
-        //}
-
-        protected override void onCreateMainItems()
+		protected override void onCreateMainItems()
         {
             ucUserName = new UcTextInput() { CName = "姓名", AllowEmpty = false };
             controls.Add(ucUserName);
@@ -109,47 +88,81 @@ namespace Hungsum.Framework.UI.Pages
 
         protected override async Task<string> update()
         {
-            //获取账套信息
-            string data = await ((HsApp)Application.Current).WSUtil.Login(this.ucUserName.ControlValue, this.ucPassword.ControlValue, this.ucDb.ControlValue);
+			if (hasRretrieveAccount)
+			{
+				//获取账套信息
+				string data = await ((HsApp)Application.Current).WSUtil.Login(this.ucUserName.ControlValue, this.ucPassword.ControlValue, this.ucDb.ControlValue);
 
-            //登录成功后将用户信息存入Application中，以便全局调用
+				//登录成功后将用户信息存入Application中，以便全局调用
 
-            XElement xReturnData = XElement.Parse(data);
+				XElement xReturnData = XElement.Parse(data);
 
-            ((HsApp)Application.Current).LoginData = new LoginData(
-                xReturnData.GetFirstElementValue("ProgressId"),
-                xReturnData.GetFirstElementValue("UserBh"),
-                xReturnData.GetFirstElementValue("UserName"),
-                xReturnData.GetFirstElementValue("DeptBh"),
-                xReturnData.GetFirstElementValue("DeptMc"),
-                xReturnData.GetFirstElementValue("RoleBhs"),
-                xReturnData.GetFirstElementValue("RoleMcs"));
+				((HsApp)Application.Current).LoginData = new LoginData(
+					xReturnData.GetFirstElementValue("ProgressId"),
+					xReturnData.GetFirstElementValue("UserBh"),
+					xReturnData.GetFirstElementValue("UserName"),
+					xReturnData.GetFirstElementValue("DeptBh"),
+					xReturnData.GetFirstElementValue("DeptMc"),
+					xReturnData.GetFirstElementValue("RoleBhs"),
+					xReturnData.GetFirstElementValue("RoleMcs"));
 
-            XElement xMenus = xReturnData.Element("Menus");
+				XElement xMenus = xReturnData.Element("Menus");
 
-            //将登录信息存入本地
-            try
-            {
-                XElement xLastLogin = new XElement("Data");
+				//将登录信息存入本地
+				try
+				{
+					XElement xLastLogin = new XElement("Data");
 
-                xLastLogin.Add(new XElement("UserName", this.ucUserName.ControlValue));
-                xLastLogin.Add(new XElement("Password", this.ucIsSaved.Checked ? this.ucPassword.ControlValue : ""));
-                xLastLogin.Add(new XElement("Account", this.ucDb.ControlValue));
-                xLastLogin.Add(new XElement("IsSaved", this.ucIsSaved.Checked));
+					xLastLogin.Add(new XElement("UserName", this.ucUserName.ControlValue));
+					xLastLogin.Add(new XElement("Password", this.ucIsSaved.Checked ? this.ucPassword.ControlValue : ""));
+					xLastLogin.Add(new XElement("Account", this.ucDb.ControlValue));
+					xLastLogin.Add(new XElement("IsSaved", this.ucIsSaved.Checked));
 
-                IPlatformExtension pe = DependencyService.Get<IPlatformExtension>(DependencyFetchTarget.GlobalInstance);
+					IPlatformExtension pe = DependencyService.Get<IPlatformExtension>(DependencyFetchTarget.GlobalInstance);
 
-                //await HsLocalStorageHelper.WriteAllText(LASTLOGINFILENAME, xLastLogin.ToString());
-                await pe.WriteTextFile(LASTLOGINFILENAME, xLastLogin.ToString());
-            }
-            catch (Exception ex)
-            {
-                this.ShowError(ex.Message);
-            }
+					//await HsLocalStorageHelper.WriteAllText(LASTLOGINFILENAME, xLastLogin.ToString());
+					await pe.WriteTextFile(LASTLOGINFILENAME, xLastLogin.ToString());
+				}
+				catch (Exception ex)
+				{
+					this.ShowError(ex.Message);
+				}
 
-            this.LoginSuccess?.Invoke(this, new HsEventArgs<XElement> { Data = xMenus });
+				this.LoginSuccess?.Invoke(this, new HsEventArgs<XElement> { Data = xMenus });
 
-            return null;
+				return null;
+			}else
+			{
+				string data = await ((HsApp)Application.Current).WSUtil.GetDbs();
+
+				this.ucDb.Datas = data;
+
+				this.hasRretrieveAccount = true;
+
+				try
+				{
+					IPlatformExtension pe = DependencyService.Get<IPlatformExtension>(DependencyFetchTarget.GlobalInstance);
+
+					//读入上次登录配置信息
+					//string lastData = await HsLocalStorageHelper.ReadAllText(LASTLOGINFILENAME, "");
+					string lastData = await pe.ReadTextFile(LASTLOGINFILENAME);
+
+					if (!string.IsNullOrWhiteSpace(lastData))
+					{
+						XElement xLastLogin = XElement.Parse(lastData);
+						this.ucUserName.ControlValue = xLastLogin.GetFirstElementValue("UserName");
+						this.ucPassword.ControlValue = xLastLogin.GetFirstElementValue("Password");
+						this.ucDb.ControlValue = xLastLogin.GetFirstElementValue("Account");
+						this.ucIsSaved.Checked = bool.Parse(xLastLogin.GetFirstElementValue("IsSaved", false.ToString()));
+					}
+				}
+				catch (Exception e)
+				{
+					throw e;
+				}
+
+				return null;
+			}
         }
     }
 }

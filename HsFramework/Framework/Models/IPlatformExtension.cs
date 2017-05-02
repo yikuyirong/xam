@@ -28,6 +28,8 @@ namespace Hungsum.Framework.Models
 
         void CallFile(string filename, params string[] paths);
 
+		string GetFileURL(string filename, params string[] paths);
+
         bool FileExist(string filename, params string[] paths);
 
         Task<long> DirectoryDelete(params string[] paths);

@@ -47,9 +47,9 @@ namespace Hungsum.Framework.UI.Pages
 
         private async Task downloadAndOpen(HsFile item)
         {
-            //如果文件存在与本地，则直接打开，否则先下载再打开。
+			//如果文件存在与本地，则直接打开，否则先下载再打开。
 
-            string[] cachePath = new string[] { "Cache", "Files" };
+			string[] cachePath = new string[] { "Cache", "Files" };
 
             string cachefilename = $"{item.FileHash}.{item.FileName}";
 
@@ -93,7 +93,32 @@ namespace Hungsum.Framework.UI.Pages
             }
             else
             {
-                pe.CallFile(cachefilename, cachePath);
+				List<string> previewFiletypes = new List<string>() 
+				{ 
+					"DOC", "DOCX", 
+					"XLS", "XLSX", 
+					"PPT", "PPTX", 
+					"PDF", 
+					"TXT", "TEXT", 
+					"JPG", "PNG"
+				};
+
+				if(previewFiletypes.Contains(item.FileType.ToUpper()))
+				{
+					string url = pe.GetFileURL(cachefilename, cachePath);
+
+					if (!string.IsNullOrWhiteSpace(url))
+					{
+						Panel_PreviewFile panel = new Panel_PreviewFile();
+
+						panel.Source = new UrlWebViewSource() { Url = url };
+
+						await Navigation.PushAsync(panel);
+					}
+				}else
+				{
+					pe.CallFile(cachefilename, cachePath);
+				}
             }
         }
 

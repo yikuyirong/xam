@@ -55,11 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="CustomRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\DirectoryExtension.cs" />
     <Compile Include="IOSPlatformExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CustomRenderer\UcWebViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

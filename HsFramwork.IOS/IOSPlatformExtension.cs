@@ -189,6 +189,22 @@ namespace Hungsum.iOS
 
         #region 打开文件
 
+		public string GetFileURL(string filename, params string[] paths)
+		{
+			//获取文件全名
+			filename = Path.Combine(_getAppDataFolder(), Path.Combine(paths), filename);
+
+			if (File.Exists(filename))
+			{
+				NSUrl url = new NSUrl(filename, true);
+
+				return url.AbsoluteString;
+			}else
+			{
+				return null;
+			}
+		}
+
         public void CallFile(string filename, params string[] paths)
         {
             //获取文件全名

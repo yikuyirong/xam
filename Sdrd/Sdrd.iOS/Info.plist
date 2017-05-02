@@ -50,7 +50,9 @@
 	</array>
 	<key>CFBundleName</key>
 	<string>山东热电</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2017.5.2.1</string>
 	<key>CFBundleVersion</key>
-	<string>2017.4.26.1</string>
+	<string>1</string>
 </dict>
 </plist>
