@@ -54,8 +54,6 @@
 			<true/>
 		</dict>
 	</dict>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleBlackTranslucent</string>
 	<key>CFBundleName</key>
 	<string>Jbcmp</string>
 	<key>CFBundleShortVersionString</key>

@@ -25,13 +25,13 @@ namespace Hungsum.Framework.UI.Pages
         {
             Animation = new MoveAnimation(MoveAnimationOptions.Right, MoveAnimationOptions.Right);
 
-            Padding = new Thickness(200, 0, 0, 0);
+			//Padding = new Thickness(200, 0, 0, 0);
 
 			mainLayout = new StackLayout()
-            {
-                BackgroundColor = Color.White,
+			{
+				BackgroundColor = Color.White,
 
-                HorizontalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.End, //.FillAndExpand,
 
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };
