@@ -34,6 +34,8 @@ namespace Hungsum.Framework.Models
 
         string GetApplicationVersion();
 
+		string GetApplicationVersionBuild();
+
         void OpenURL(string url);
 
     }

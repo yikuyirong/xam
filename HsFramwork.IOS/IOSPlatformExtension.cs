@@ -249,8 +249,13 @@ namespace Hungsum.iOS
 
         public string GetApplicationVersion()
         {
-            return NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString();
+            return NSBundle.MainBundle.InfoDictionary["CFBundleShortVersionString"].ToString();
         }
+
+		public string GetApplicationVersionBuild()
+		{
+			return NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString();
+		}
 
         /// <summary>
         /// 调用Safari打开URL

@@ -27,7 +27,7 @@ namespace Hungsum.Framework.UI.Pages
 
             Padding = new Thickness(200, 0, 0, 0);
 
-            mainLayout = new StackLayout()
+			mainLayout = new StackLayout()
             {
                 BackgroundColor = Color.White,
 
