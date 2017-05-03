@@ -39,7 +39,7 @@ namespace Hungsum.Framework.UI.Pages
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.Center,
                 BackgroundColor = Color.White,
-                Opacity = 0.7
+                Opacity = 0.8
             };
 
             //包含于mainContent

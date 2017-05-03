@@ -86,6 +86,14 @@ namespace Hungsum.Framework.UI.Pages
             controls.Add(ucIsSaved);
         }
 
+		protected override void validate()
+		{
+			if(hasRretrieveAccount)
+			{
+				base.validate();
+			}
+		}
+
         protected override async Task<string> update()
         {
 			if (hasRretrieveAccount)

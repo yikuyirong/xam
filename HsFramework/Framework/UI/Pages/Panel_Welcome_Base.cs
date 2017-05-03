@@ -14,7 +14,7 @@ namespace Hungsum.Framework.UI.Pages
     {
         public event EventHandler UpgradeComplete;
 
-        private bool allowCheck = false;
+        private bool allowCheck = true;
 
         protected void onUpgradeComplete()
         {
@@ -57,8 +57,9 @@ namespace Hungsum.Framework.UI.Pages
                 Text = "检查更新",
                 Command = this,
                 CommandParameter = new HsCommandParams(SysActionKeys.UserDo1),
-                HorizontalOptions = LayoutOptions.End,
-                VerticalOptions = LayoutOptions.End
+				HorizontalOptions = LayoutOptions.Center,
+				VerticalOptions = LayoutOptions.CenterAndExpand,
+				BackgroundColor = Color.White
             };
 
             controlLayout.Children.Add(button);
@@ -81,6 +82,9 @@ namespace Hungsum.Framework.UI.Pages
 
         }
 
+		/// <summary>
+		/// 检查是否更新
+		/// </summary>
         protected async void _checkIsUpgrade()
         {
             try
@@ -117,7 +121,6 @@ namespace Hungsum.Framework.UI.Pages
                             this.onUpgradeComplete();
                         }
                     }
-
                 }
                 else
                 {
