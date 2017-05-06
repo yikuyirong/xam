@@ -82,8 +82,9 @@ namespace Hungsum.Framework.UI.Pages
                 VerticalOptions = LayoutOptions.End,
             };
 
-            controlLayout.Children.Add(btnUserDo1);
-            controlLayout.Children.Add(btnUserDo2);
+			//取消在前，确定在后，符合IOS的设计习惯。
+			controlLayout.Children.Add(btnUserDo2);
+			controlLayout.Children.Add(btnUserDo1);
 
             rootLayout.Children.Add(controlLayout);
 
