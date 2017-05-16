@@ -15,7 +15,7 @@ namespace Hungsum.Jbcmp.Models
         public const string JBZBWJPSB = "JBZBWJPSB";
 		
 		public const string JB招标文件评审表 = "招标文件评审表";
-		
+
 		public const string JBBJDXPSB = "JBBJDXPSB";
 		
 		public const string JB比价定向评审表 = "比价定向评审表";

@@ -19,7 +19,7 @@ namespace Hungsum.Jbcmp
         {
             //本次测试时不要使用127.0.0.1或localhost，会引发connection refused异常。
             this.WSUtil = new JbcmpWSUtil() { URL = "http://app.jiabaoruye.com.cn/jbcmp/jbcmpwebservice.asmx/" };
-            //this.WSUtil = new JbcmpWSUtil() { URL = "http://192.168.1.164/jbcmpwebservice.asmx/" };
+            //this.WSUtil = new JbcmpWSUtil() { URL = "http://192.168.1.127/jbcmpwebservice.asmx/" };
         }
 
         protected override Panel_Main getMainPage(XElement xMenus)

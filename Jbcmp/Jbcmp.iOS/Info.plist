@@ -32,8 +32,6 @@
 		<string>Icon-Small.png</string>
 		<string>Icon-Small-40@2x.png</string>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>iconize-ionicons.ttf</string>
@@ -57,6 +55,8 @@
 	<key>CFBundleName</key>
 	<string>Jbcmp</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2017.5.6.3</string>
+	<string>2017.5.9.1</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>

@@ -82,9 +82,15 @@ namespace Hungsum.Framework.Models
                     return 1;
                 }
 
-                result = v1[i].CompareTo(v2[i]);
+				try
+				{
+					result = int.Parse(v1[i]).CompareTo(int.Parse(v2[i]));
+				}catch
+				{
+					result = v1[i].CompareTo(v2[i]);
+				}
 
-                if (result != 0)
+				if (result != 0)
                 {
                     return result;
                 }

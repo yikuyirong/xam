@@ -64,6 +64,15 @@ namespace Hungsum.Jbcmp.UI.Page
                         await Navigation.PushAsync(panel);
                     }
                     break;
+				case JbcmpDjlx.JBBJDXPSB:
+					{
+						HsLabelValue item = await ((JbcmpWSUtil)GetWSUtil()).GetJbBjdxpsb(GetLoginData().ProgressId, djId);
+
+						Panel_JbBjdxpsb panel = new Panel_JbBjdxpsb(item) { AuditOnly = auditOnly };
+
+						await Navigation.PushAsync(panel);
+					}
+					break;
                 default:
                     await base.openDJ(djlx, djId, auditOnly);
                     break;

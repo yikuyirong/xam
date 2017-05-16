@@ -48,6 +48,7 @@
     <Compile Include="UI\Page\Panel_JbCpspd.cs" />
     <Compile Include="UI\Page\Panel_Welcome.cs" />
     <Compile Include="Utilities\JbcmpWSUtil.cs" />
+    <Compile Include="UI\Page\Panel_JbBjdxpsb.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FormsPlugin.Iconize, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
