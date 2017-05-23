@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Xml.Linq;
 
 namespace Hungsum.Framework.UI.Pages
 {
@@ -99,7 +100,15 @@ namespace Hungsum.Framework.UI.Pages
                 CommandParameter = new HsCommandParams(SysActionKeys.UserDo1)
             });
 
-            mainLayout.Children.Add(new Button()
+			mainLayout.Children.Add(new Button()
+			{
+				Text = "检查更新",
+				Command = this,
+				CommandParameter = new HsCommandParams(SysActionKeys.UserDo2)
+			});
+
+
+			mainLayout.Children.Add(new Button()
             {
                 Text = "修改密码",
                 Command = this,
@@ -119,7 +128,15 @@ namespace Hungsum.Framework.UI.Pages
             Content = mainLayout;
         }
 
-        protected override async void callAction(HsActionKey actionKey, object item)
+		protected virtual async Task<HsLabelValue> getLastestIPAInfo()
+		{
+			string result = await GetWSUtil().GetIOSClientInfo();
+
+			return XElement.Parse(result).ToHsLabelValue();
+		}
+
+
+		protected override async void callAction(HsActionKey actionKey, object item)
         {
             try
             {
@@ -142,7 +159,44 @@ namespace Hungsum.Framework.UI.Pages
                     await this.DisplayAlert("缓存删除成功。", size != 0 ? $"释放空间{size.GetFileSizeString()}" : "无缓存文件", "确定");
 
                     callAction(SysActionKeys.关闭, null);
-                }
+				}else if(actionKey == SysActionKeys.UserDo2)
+				{
+					//获取新版本
+					HsLabelValue lvVersion = await getLastestIPAInfo();
+
+					//取版本号
+					HsVersion version = HsVersion.Parse(lvVersion.GetValueByLabel("Version"));
+
+					string upgradeUri = lvVersion.GetValueByLabel("UpgradeURI");
+
+					//检查版本最后一位，如果是奇数表明是一般更新，偶数表明是强制更新
+					IPlatformExtension pe = DependencyService.Get<IPlatformExtension>();
+
+					HsVersion currentVersion = HsVersion.Parse(pe.GetApplicationVersion());
+
+					if (pe != null && version > currentVersion) //存在新版本
+					{
+						if (version.Type == HsVersion.EType.Force)
+						{
+							await this.DisplayAlert($"发现新版本 {version}，请立即更新", $"当前版本 {currentVersion}", "确定");
+
+							pe.OpenURL(upgradeUri);
+						}
+						else
+						{
+							if (await this.DisplayAlert($"发现新版本 {version}，是否更新", $"当前版本 {currentVersion}", "是", "否"))
+							{
+								pe.OpenURL(upgradeUri);
+							}
+						}
+					}
+					else
+					{
+						await this.DisplayAlert("当前是最新版本",$"当前版本 {currentVersion}", "确定");
+					}
+
+					callAction(SysActionKeys.关闭, null);
+				}
                 else if (actionKey == SysActionKeys.注销)
                 {
                     //注销

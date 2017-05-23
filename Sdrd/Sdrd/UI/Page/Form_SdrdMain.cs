@@ -31,6 +31,9 @@ namespace Hungsum.Sdrd.UI.Page
                 case SdrdFuncKey.RD项目维护:
                     await Navigation.PushAsync(new Form_Sdrdxm_Operation());
                     break;
+				case SdrdFuncKey.RD项目确认:
+					await Navigation.PushAsync(new Form_Sdrdxm_Confirm());
+					break;
                 case SdrdFuncKey.RD合同维护:
                     await Navigation.PushAsync(new Form_Sdrdht_Operation());
                     break;

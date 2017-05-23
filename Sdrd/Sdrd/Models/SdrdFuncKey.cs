@@ -12,6 +12,8 @@ namespace Hungsum.Sdrd.Models
 
         public const string RD项目维护 = "RDAB0010";
 
+		public const string RD项目确认 = "RDAB0020";
+
         public const string RD客户交流记录维护 = "RDAC0010";
 
         public const string RD客户交流记录浏览 = "RDAC0020";
