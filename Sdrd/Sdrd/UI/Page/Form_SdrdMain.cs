@@ -14,8 +14,7 @@ namespace Hungsum.Sdrd.UI.Page
     {
         public Form_SdrdMain(XElement xMenus) : base(xMenus) { }
 
-
-        protected override async Task doAction(IHsLabelValue item)
+		protected override async Task doAction(IHsLabelValue item)
         {
             switch (item.Value)
             {

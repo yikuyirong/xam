@@ -82,13 +82,10 @@ namespace Hungsum.Framework.Models
                     return 1;
                 }
 
-				try
-				{
-					result = int.Parse(v1[i]).CompareTo(int.Parse(v2[i]));
-				}catch
-				{
-					result = v1[i].CompareTo(v2[i]);
-				}
+				//比较字符串长度，如果长度不同则前补零
+				int comLength = Math.Max(v1[i].Length, v2[i].Length);
+
+				result = v1[i].PadLeft(comLength, '0').CompareTo(v2[i].PadLeft(comLength, '0'));
 
 				if (result != 0)
                 {

@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace Hungsum.Sdrd.UI.Page
 {
-	public class Form_Sdrdxm_Confirm : Form_DJ
+	public class Form_Sdrdxm_Confirm : Form_Sdrdxm_Base
     {
 		public override string GetTitle()
         {
